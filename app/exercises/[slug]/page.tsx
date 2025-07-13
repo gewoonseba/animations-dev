@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { getExerciseBySlug } from "../../lib/exercises";
 import { BouncingBallComponent } from "../bouncing-ball/component";
 import { LoadingSpinnerComponent } from "../loading-spinner/component";
@@ -18,50 +18,43 @@ interface ExercisePageProps {
 export default async function ExercisePage({ params }: ExercisePageProps) {
   const { slug } = await params;
   const exercise = getExerciseBySlug(slug);
-  
+
   if (!exercise) {
     notFound();
   }
 
-  const ExerciseComponent = exerciseComponents[slug as keyof typeof exerciseComponents];
+  const ExerciseComponent =
+    exerciseComponents[slug as keyof typeof exerciseComponents];
 
   if (!ExerciseComponent) {
     notFound();
   }
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "800px", margin: "0 auto" }}>
-      <Link href="/" style={{ color: "#0070f3", textDecoration: "none" }}>
+    <div className="p-8 max-w-3xl mx-auto">
+      <Link
+        href="/"
+        className="text-neutral-500 no-underline hover:text-neutral-800 text-sm"
+      >
         ← Back to exercises
       </Link>
-      
-      <h1 style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
+
+      <h1 className="mt-8 mb-2 text-sm font-semibold text-neutral-900">
         {exercise.title}
       </h1>
-      
-      <p style={{ marginBottom: "1rem", color: "#666" }}>
-        {exercise.description}
-      </p>
-      
-      <a 
-        href={exercise.courseUrl} 
-        target="_blank" 
+
+      <p className="mb-4 text-sm text-neutral-600">{exercise.description}</p>
+
+      <a
+        href={exercise.courseUrl}
+        target="_blank"
         rel="noopener noreferrer"
-        style={{ color: "#0070f3", textDecoration: "none" }}
+        className="text-neutral-500 no-underline hover:text-neutral-800 text-sm"
       >
         View course material →
       </a>
-      
-      <div style={{ 
-        marginTop: "2rem", 
-        padding: "2rem", 
-        border: "1px solid #eee", 
-        borderRadius: "8px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "300px"
-      }}>
+
+      <div className="mt-8 p-8 border border-neutral-100 rounded-lg flex justify-center items-center w-full h-96">
         <ExerciseComponent />
       </div>
     </div>
