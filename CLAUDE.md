@@ -50,9 +50,31 @@ npm run lint     # Run ESLint to check code quality
 - TypeScript 5 with strict typing
 - Built-in ESLint configuration
 
+## Animation Exercises Structure
+
+### Adding New Exercises
+To add a new exercise, create a folder structure like this:
+```
+app/exercises/your-exercise-name/
+├── component.tsx              # Your animation component
+├── component.module.css       # Scoped CSS for the animation
+└── metadata.ts               # Exercise metadata
+```
+
+### Exercise Registration
+1. Add your exercise metadata to `app/lib/exercises.ts` in the `exercises` array
+2. Import your component in `app/exercises/[slug]/page.tsx` and add to `exerciseComponents`
+3. Your exercise will automatically appear on the homepage grouped by topic
+
+### Exercise Structure
+- Each exercise is completely self-contained with its own CSS modules
+- CSS modules prevent style conflicts between exercises
+- Exercises are automatically grouped by `topic` on the homepage
+- Dynamic routing handles individual exercise pages
+
 ## Development Notes
 
 - The project uses Turbopack for faster development builds
 - TypeScript is configured with strict mode and path aliases
-- Images are optimized using Next.js Image component
-- The project includes basic responsive design and accessibility features
+- ESLint is configured with Next.js recommended settings
+- Each exercise component should be fully encapsulated and not rely on global styles
