@@ -5,45 +5,23 @@ export default function Home() {
   const exercisesByTopic = getExercisesByTopic();
 
   return (
-    <div style={{ marginLeft: "80px", marginTop: "67px" }}>
-      <h1 style={{ 
-        fontFamily: "var(--font-inter)", 
-        fontWeight: "500", 
-        fontSize: "13px", 
-        color: "#000000",
-        marginBottom: "99px"
-      }}>
+    <div className="ml-20 mt-16">
+      <h1 className="font-medium text-sm text-black mb-24">
         Animations.dev
       </h1>
       
       {Object.entries(exercisesByTopic).map(([topic, exercises]) => (
-        <div key={topic} style={{ marginBottom: "121px" }}>
-          <h2 style={{ 
-            fontFamily: "var(--font-inter)", 
-            fontWeight: "500", 
-            fontSize: "13px", 
-            color: "#000000",
-            marginBottom: "22px"
-          }}>
+        <div key={topic} className="mb-24">
+          <h2 className="font-medium text-sm text-black mb-6">
             {topic}
           </h2>
           
-          <ul style={{ listStyle: "none", padding: 0 }}>
+          <ul className="list-none p-0">
             {exercises.map((exercise) => (
-              <li key={exercise.slug} style={{ 
-                marginBottom: "22px"
-              }}>
+              <li key={exercise.slug} className="mb-6">
                 <Link 
                   href={`/exercises/${exercise.slug}`}
-                  style={{ 
-                    fontFamily: "var(--font-inter)", 
-                    fontWeight: "400", 
-                    fontSize: "13px", 
-                    color: "#777676",
-                    textDecoration: "underline",
-                    textDecorationStyle: "solid",
-                    textUnderlinePosition: "from-font"
-                  }}
+                  className="font-normal text-sm text-gray-500 underline decoration-solid underline-offset-auto"
                 >
                   {exercise.title}
                 </Link>
