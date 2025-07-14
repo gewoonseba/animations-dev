@@ -27,7 +27,7 @@ interface ExercisePageProps {
 
 export default async function ExercisePage({ params }: ExercisePageProps) {
   const { slug } = await params;
-  const exercise = getExerciseBySlug(slug);
+  const exercise = await getExerciseBySlug(slug);
 
   if (!exercise) {
     notFound();

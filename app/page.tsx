@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getExercisesByTopic } from "./lib/exercises";
 
-export default function Home() {
-  const exercisesByTopic = getExercisesByTopic();
+export default async function Home() {
+  const exercisesByTopic = await getExercisesByTopic();
 
   return (
     <div className="mx-20 mt-16 max-w-screen-lg">

@@ -6,63 +6,47 @@ export interface ExerciseMetadata {
   slug: string;
 }
 
-export const exercises: ExerciseMetadata[] = [
-  {
-    title: "Bouncing Ball",
-    description: "A simple ball that bounces up and down using CSS keyframes",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "bouncing-ball"
-  },
-  {
-    title: "Loading Spinner",
-    description: "A rotating circle loading animation with CSS transforms",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "loading-spinner"
-  },
-  {
-    title: "Stacked Cards",
-    description: "Cards stacked on top of each other using CSS transforms and grid layout",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "stacked-cards"
-  },
-  {
-    title: "Hover Circle",
-    description: "A circle that moves up when hovered using CSS transitions",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "hover-circle"
-  },
-  {
-    title: "Card Hover",
-    description: "A card with a description that slides up on hover using smooth transitions",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "card-hover"
-  },
-  {
-    title: "Download Arrow",
-    description: "A download button with arrows that slide in and out on hover",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "download-arrow"
-  },
-  {
-    title: "Toast Component",
-    description: "A toast notification system with stacking animations and smooth transitions",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "toast-component"
-  }
+// Simple list of exercise slugs - add new exercises here
+const exerciseSlugs = [
+  "bouncing-ball",
+  "loading-spinner", 
+  "stacked-cards",
+  "hover-circle",
+  "card-hover",
+  "download-arrow",
+  "toast-component"
 ];
 
-export function getExerciseBySlug(slug: string): ExerciseMetadata | undefined {
+// Cache for loaded exercises
+let exercisesCache: ExerciseMetadata[] | null = null;
+
+async function loadExercises(): Promise<ExerciseMetadata[]> {
+  if (exercisesCache) {
+    return exercisesCache;
+  }
+
+  const exercises = await Promise.all(
+    exerciseSlugs.map(async (slug) => {
+      const metadataModule = await import(`../exercises/${slug}/metadata`);
+      return metadataModule.metadata;
+    })
+  );
+
+  exercisesCache = exercises;
+  return exercises;
+}
+
+export async function getExercises(): Promise<ExerciseMetadata[]> {
+  return loadExercises();
+}
+
+export async function getExerciseBySlug(slug: string): Promise<ExerciseMetadata | undefined> {
+  const exercises = await loadExercises();
   return exercises.find(exercise => exercise.slug === slug);
 }
 
-export function getExercisesByTopic(): Record<string, ExerciseMetadata[]> {
+export async function getExercisesByTopic(): Promise<Record<string, ExerciseMetadata[]>> {
+  const exercises = await loadExercises();
   const grouped: Record<string, ExerciseMetadata[]> = {};
   
   exercises.forEach(exercise => {
