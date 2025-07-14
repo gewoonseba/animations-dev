@@ -20,6 +20,41 @@ export const exercises: ExerciseMetadata[] = [
     courseUrl: "https://example.com/css-animations-course",
     topic: "CSS Animations",
     slug: "loading-spinner"
+  },
+  {
+    title: "Stacked Cards",
+    description: "Cards stacked on top of each other using CSS transforms and grid layout",
+    courseUrl: "https://example.com/css-animations-course",
+    topic: "CSS Animations",
+    slug: "stacked-cards"
+  },
+  {
+    title: "Hover Circle",
+    description: "A circle that moves up when hovered using CSS transitions",
+    courseUrl: "https://example.com/css-animations-course",
+    topic: "CSS Animations",
+    slug: "hover-circle"
+  },
+  {
+    title: "Card Hover",
+    description: "A card with a description that slides up on hover using smooth transitions",
+    courseUrl: "https://example.com/css-animations-course",
+    topic: "CSS Animations",
+    slug: "card-hover"
+  },
+  {
+    title: "Download Arrow",
+    description: "A download button with arrows that slide in and out on hover",
+    courseUrl: "https://example.com/css-animations-course",
+    topic: "CSS Animations",
+    slug: "download-arrow"
+  },
+  {
+    title: "Toast Component",
+    description: "A toast notification system with stacking animations and smooth transitions",
+    courseUrl: "https://example.com/css-animations-course",
+    topic: "CSS Animations",
+    slug: "toast-component"
   }
 ];
 
