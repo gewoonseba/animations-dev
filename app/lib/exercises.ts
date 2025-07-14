@@ -6,16 +6,16 @@ export interface ExerciseMetadata {
   slug: string;
 }
 
-// Simple list of exercise slugs - add new exercises here
-const exerciseSlugs = [
-  "bouncing-ball",
-  "loading-spinner", 
-  "stacked-cards",
-  "hover-circle",
-  "card-hover",
-  "download-arrow",
-  "toast-component"
-];
+// Import all metadata modules explicitly 
+const metadataImports = {
+  "bouncing-ball": () => import("../exercises/bouncing-ball/metadata"),
+  "loading-spinner": () => import("../exercises/loading-spinner/metadata"),
+  "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
+  "hover-circle": () => import("../exercises/hover-circle/metadata"),
+  "card-hover": () => import("../exercises/card-hover/metadata"),
+  "download-arrow": () => import("../exercises/download-arrow/metadata"),
+  "toast-component": () => import("../exercises/toast-component/metadata"),
+};
 
 // Cache for loaded exercises
 let exercisesCache: ExerciseMetadata[] | null = null;
@@ -26,8 +26,8 @@ async function loadExercises(): Promise<ExerciseMetadata[]> {
   }
 
   const exercises = await Promise.all(
-    exerciseSlugs.map(async (slug) => {
-      const metadataModule = await import(`../exercises/${slug}/metadata`);
+    Object.entries(metadataImports).map(async ([slug, importFn]) => {
+      const metadataModule = await importFn();
       return metadataModule.metadata;
     })
   );
