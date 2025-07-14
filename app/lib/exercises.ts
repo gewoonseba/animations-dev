@@ -6,28 +6,47 @@ export interface ExerciseMetadata {
   slug: string;
 }
 
-export const exercises: ExerciseMetadata[] = [
-  {
-    title: "Bouncing Ball",
-    description: "A simple ball that bounces up and down using CSS keyframes",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "bouncing-ball"
-  },
-  {
-    title: "Loading Spinner",
-    description: "A rotating circle loading animation with CSS transforms",
-    courseUrl: "https://example.com/css-animations-course",
-    topic: "CSS Animations",
-    slug: "loading-spinner"
-  }
-];
+// Import all metadata modules explicitly 
+const metadataImports = {
+  "bouncing-ball": () => import("../exercises/bouncing-ball/metadata"),
+  "loading-spinner": () => import("../exercises/loading-spinner/metadata"),
+  "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
+  "hover-circle": () => import("../exercises/hover-circle/metadata"),
+  "card-hover": () => import("../exercises/card-hover/metadata"),
+  "download-arrow": () => import("../exercises/download-arrow/metadata"),
+  "toast-component": () => import("../exercises/toast-component/metadata"),
+};
 
-export function getExerciseBySlug(slug: string): ExerciseMetadata | undefined {
+// Cache for loaded exercises
+let exercisesCache: ExerciseMetadata[] | null = null;
+
+async function loadExercises(): Promise<ExerciseMetadata[]> {
+  if (exercisesCache) {
+    return exercisesCache;
+  }
+
+  const exercises = await Promise.all(
+    Object.entries(metadataImports).map(async ([slug, importFn]) => {
+      const metadataModule = await importFn();
+      return metadataModule.metadata;
+    })
+  );
+
+  exercisesCache = exercises;
+  return exercises;
+}
+
+export async function getExercises(): Promise<ExerciseMetadata[]> {
+  return loadExercises();
+}
+
+export async function getExerciseBySlug(slug: string): Promise<ExerciseMetadata | undefined> {
+  const exercises = await loadExercises();
   return exercises.find(exercise => exercise.slug === slug);
 }
 
-export function getExercisesByTopic(): Record<string, ExerciseMetadata[]> {
+export async function getExercisesByTopic(): Promise<Record<string, ExerciseMetadata[]>> {
+  const exercises = await loadExercises();
   const grouped: Record<string, ExerciseMetadata[]> = {};
   
   exercises.forEach(exercise => {

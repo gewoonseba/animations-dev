@@ -1,0 +1,31 @@
+.downloadButton {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.08),
+    0px 2px 2px rgba(0, 0, 0, 0.04);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.downloadButton svg {
+  grid-area: 1/1;
+  transition: transform 250ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.downloadButton svg:first-of-type {
+  transform: translateY(-150%);
+}
+
+.downloadButton:hover svg:first-of-type {
+  transform: translateY(0%);
+}
+
+.downloadButton:hover svg:last-of-type {
+  transform: translateY(150%);
+}
