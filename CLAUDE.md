@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js 15 project (animations-dev) bootstrapped with `create-next-app`, using the App Router architecture. The project is set up for animation development and uses TypeScript with React 19.
+This is a Next.js 15 project (animations-dev) bootstrapped with `create-next-app`, using the App Router architecture. The project is set up for animation development and uses TypeScript with React 19 and Tailwind CSS.
 
 ## Common Development Commands
 
@@ -29,9 +29,9 @@ npm run lint     # Run ESLint to check code quality
 
 ### App Router Structure
 - Uses Next.js App Router (app directory)
-- `app/layout.tsx` - Root layout with Geist font configuration
-- `app/page.tsx` - Home page component
-- `app/globals.css` - Global styles with dark mode support
+- `app/layout.tsx` - Root layout with Inter font configuration
+- `app/page.tsx` - Home page displaying exercises grouped by topic
+- `app/globals.css` - Global styles with Tailwind CSS imports
 
 ### Key Configuration Files
 - `next.config.ts` - Next.js configuration (minimal setup)
@@ -39,15 +39,16 @@ npm run lint     # Run ESLint to check code quality
 - Path aliases configured: `@/*` maps to root directory
 
 ### Styling
-- Uses CSS modules (`.module.css` files)
-- Global CSS with CSS custom properties for theming
-- Dark mode support via `prefers-color-scheme`
-- Geist font family (sans and mono variants)
+- Uses Tailwind CSS for utility-first styling
+- CSS modules for exercise-specific styles (`.module.css` files)
+- Inter font family loaded via `next/font/google`
+- Font smoothing configured for better rendering
 
 ### Dependencies
 - Next.js 15.3.5 with Turbopack
 - React 19
 - TypeScript 5 with strict typing
+- Tailwind CSS 4.1.11
 - Built-in ESLint configuration
 
 ## Animation Exercises Structure
@@ -70,7 +71,7 @@ app/exercises/your-exercise-name/
 - Each exercise is completely self-contained with its own CSS modules
 - CSS modules prevent style conflicts between exercises
 - Exercises are automatically grouped by `topic` on the homepage
-- Dynamic routing handles individual exercise pages
+- Dynamic routing handles individual exercise pages at `/exercises/[slug]`
 
 ## Development Notes
 
