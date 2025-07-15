@@ -14,6 +14,7 @@ const metadataImports = {
   "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
   "toast-component-starting-styles": () =>
     import("../exercises/toast-component-starting-styles/metadata"),
+  "toast-component": () => import("../exercises/toast-component/metadata"),
 };
 
 // Cache for loaded exercises

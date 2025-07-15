@@ -20,7 +20,7 @@ function Toast({ index }: ToastProps) {
       style={{ "--index": index } as React.CSSProperties}
       data-mounted={mounted}
     >
-      <span className={styles.title}>Event Created</span>
+      <span className={styles.title}>Event Created With Starting Styles</span>
       <span className={styles.description}>Monday, January 3rd at 6:00pm</span>
     </div>
   );
