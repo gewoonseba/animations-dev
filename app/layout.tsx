@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-inter font-medium`}>
+      <body
+        className={`${inter.variable} font-inter font-medium px-4 py-20 md:p-20 max-w-screen-lg`}
+      >
         {children}
       </body>
     </html>

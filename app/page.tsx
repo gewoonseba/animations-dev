@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="mx-20 mt-16 max-w-screen-lg">
+    <div>
       <h1 className="text-sm text-black mb-24">Animations.dev</h1>
 
       <div className="mb-24">
