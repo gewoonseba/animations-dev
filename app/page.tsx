@@ -5,7 +5,7 @@ export default async function Home() {
   const exercisesByTopic = await getExercisesByTopic();
 
   return (
-    <div className="mx-20 mt-16 max-w-screen-lg">
+    <div>
       <h1 className="text-sm text-black mb-24">Animations.dev</h1>
 
       {Object.entries(exercisesByTopic).map(([topic, exercises]) => (
