@@ -1,17 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getExerciseBySlug } from "../../lib/exercises";
-import { BouncingBallComponent } from "../bouncing-ball/component";
-import { LoadingSpinnerComponent } from "../loading-spinner/component";
-import { StackedCardsComponent } from "../stacked-cards/component";
-import { HoverCircleComponent } from "../hover-circle/component";
 import { CardHoverComponent } from "../card-hover/component";
 import { DownloadArrowComponent } from "../download-arrow/component";
+import { HoverCircleComponent } from "../hover-circle/component";
+import { StackedCardsComponent } from "../stacked-cards/component";
 import { ToastComponentComponent } from "../toast-component/component";
 
 const exerciseComponents = {
-  "bouncing-ball": BouncingBallComponent,
-  "loading-spinner": LoadingSpinnerComponent,
   "stacked-cards": StackedCardsComponent,
   "hover-circle": HoverCircleComponent,
   "card-hover": CardHoverComponent,

@@ -1,9 +1,9 @@
 import { ExerciseMetadata } from "../../lib/exercises";
 
 export const metadata: ExerciseMetadata = {
-  title: "Hover Circle",
+  title: "Transitions - Hover Circle",
   description: "A circle that moves up when hovered using CSS transitions",
-  courseUrl: "https://example.com/css-animations-course",
+  courseUrl: "https://animations.dev/learn/css-animations/transitions",
   topic: "CSS Animations",
-  slug: "hover-circle"
+  slug: "hover-circle",
 };

@@ -6,15 +6,12 @@ export interface ExerciseMetadata {
   slug: string;
 }
 
-// Import all metadata modules explicitly 
+// Import all metadata modules explicitly
 const metadataImports = {
-  "bouncing-ball": () => import("../exercises/bouncing-ball/metadata"),
-  "loading-spinner": () => import("../exercises/loading-spinner/metadata"),
-  "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
-  "hover-circle": () => import("../exercises/hover-circle/metadata"),
   "card-hover": () => import("../exercises/card-hover/metadata"),
   "download-arrow": () => import("../exercises/download-arrow/metadata"),
-  "toast-component": () => import("../exercises/toast-component/metadata"),
+  "hover-circle": () => import("../exercises/hover-circle/metadata"),
+  "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
 };
 
 // Cache for loaded exercises
@@ -40,21 +37,25 @@ export async function getExercises(): Promise<ExerciseMetadata[]> {
   return loadExercises();
 }
 
-export async function getExerciseBySlug(slug: string): Promise<ExerciseMetadata | undefined> {
+export async function getExerciseBySlug(
+  slug: string
+): Promise<ExerciseMetadata | undefined> {
   const exercises = await loadExercises();
-  return exercises.find(exercise => exercise.slug === slug);
+  return exercises.find((exercise) => exercise.slug === slug);
 }
 
-export async function getExercisesByTopic(): Promise<Record<string, ExerciseMetadata[]>> {
+export async function getExercisesByTopic(): Promise<
+  Record<string, ExerciseMetadata[]>
+> {
   const exercises = await loadExercises();
   const grouped: Record<string, ExerciseMetadata[]> = {};
-  
-  exercises.forEach(exercise => {
+
+  exercises.forEach((exercise) => {
     if (!grouped[exercise.topic]) {
       grouped[exercise.topic] = [];
     }
     grouped[exercise.topic].push(exercise);
   });
-  
+
   return grouped;
 }

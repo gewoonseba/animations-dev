@@ -1,9 +1,9 @@
 import { ExerciseMetadata } from "../../lib/exercises";
 
 export const metadata: ExerciseMetadata = {
-  title: "Download Arrow",
+  title: "Transitions - Download Arrow",
   description: "A download button with arrows that slide in and out on hover",
-  courseUrl: "https://example.com/css-animations-course",
+  courseUrl: "https://animations.dev/learn/css-animations/transitions",
   topic: "CSS Animations",
-  slug: "download-arrow"
+  slug: "download-arrow",
 };
