@@ -8,13 +8,14 @@ export interface ExerciseMetadata {
 
 // Import all metadata modules explicitly
 const metadataImports = {
-  "card-hover": () => import("../exercises/card-hover/metadata"),
-  "download-arrow": () => import("../exercises/download-arrow/metadata"),
-  "hover-circle": () => import("../exercises/hover-circle/metadata"),
-  "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
+  "card-hover": () => import("@/app/exercises/card-hover/metadata"),
+  "download-arrow": () => import("@/app/exercises/download-arrow/metadata"),
+  "hover-circle": () => import("@/app/exercises/hover-circle/metadata"),
+  "stacked-cards": () => import("@/app/exercises/stacked-cards/metadata"),
   "toast-component-starting-styles": () =>
-    import("../exercises/toast-component-starting-styles/metadata"),
-  "toast-component": () => import("../exercises/toast-component/metadata"),
+    import("@/app/exercises/toast-component-starting-styles/metadata"),
+  "toast-component": () => import("@/app/exercises/toast-component/metadata"),
+  "text-reveal": () => import("@/app/exercises/text-reveal/metadata"),
 };
 
 // Cache for loaded exercises

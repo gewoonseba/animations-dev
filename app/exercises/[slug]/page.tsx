@@ -1,12 +1,13 @@
+import { CardHoverComponent } from "@/app/exercises/card-hover/component";
+import { DownloadArrowComponent } from "@/app/exercises/download-arrow/component";
+import { HoverCircleComponent } from "@/app/exercises/hover-circle/component";
+import { StackedCardsComponent } from "@/app/exercises/stacked-cards/component";
+import { TextReveal } from "@/app/exercises/text-reveal/component";
+import { ToastComponentStartingStylesComponent } from "@/app/exercises/toast-component-starting-styles/component";
+import { ToastComponentComponent } from "@/app/exercises/toast-component/component";
+import { getExerciseBySlug } from "@/app/lib/exercises";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getExerciseBySlug } from "../../lib/exercises";
-import { CardHoverComponent } from "../card-hover/component";
-import { DownloadArrowComponent } from "../download-arrow/component";
-import { HoverCircleComponent } from "../hover-circle/component";
-import { StackedCardsComponent } from "../stacked-cards/component";
-import { ToastComponentStartingStylesComponent } from "../toast-component-starting-styles/component";
-import { ToastComponentComponent } from "../toast-component/component";
 
 const exerciseComponents = {
   "stacked-cards": StackedCardsComponent,
@@ -15,6 +16,7 @@ const exerciseComponents = {
   "download-arrow": DownloadArrowComponent,
   "toast-component": ToastComponentComponent,
   "toast-component-starting-styles": ToastComponentStartingStylesComponent,
+  "text-reveal": TextReveal,
 };
 
 interface ExercisePageProps {
