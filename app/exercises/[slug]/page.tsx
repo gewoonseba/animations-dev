@@ -5,6 +5,7 @@ import { CardHoverComponent } from "../card-hover/component";
 import { DownloadArrowComponent } from "../download-arrow/component";
 import { HoverCircleComponent } from "../hover-circle/component";
 import { StackedCardsComponent } from "../stacked-cards/component";
+import { ToastComponentStartingStylesComponent } from "../toast-component-starting-styles/component";
 import { ToastComponentComponent } from "../toast-component/component";
 
 const exerciseComponents = {
@@ -13,6 +14,7 @@ const exerciseComponents = {
   "card-hover": CardHoverComponent,
   "download-arrow": DownloadArrowComponent,
   "toast-component": ToastComponentComponent,
+  "toast-component-starting-styles": ToastComponentStartingStylesComponent,
 };
 
 interface ExercisePageProps {

@@ -12,6 +12,8 @@ const metadataImports = {
   "download-arrow": () => import("../exercises/download-arrow/metadata"),
   "hover-circle": () => import("../exercises/hover-circle/metadata"),
   "stacked-cards": () => import("../exercises/stacked-cards/metadata"),
+  "toast-component-starting-styles": () =>
+    import("../exercises/toast-component-starting-styles/metadata"),
 };
 
 // Cache for loaded exercises
