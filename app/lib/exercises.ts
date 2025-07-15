@@ -60,18 +60,3 @@ export async function getExercisesByTopic(): Promise<
 
   return grouped;
 }
-
-import { EXERCISE_LAYOUT, type ExerciseSection } from "./exercise-config";
-
-// New function that uses the central configuration layout
-export async function getExercisesByLayout(): Promise<ExerciseSection[]> {
-  const exercises = await loadExercises();
-  const exerciseMap = new Map(exercises.map(ex => [ex.slug, ex]));
-  
-  return EXERCISE_LAYOUT.map(section => ({
-    title: section.title,
-    exercises: section.exercises
-      .map(slug => exerciseMap.get(slug))
-      .filter((exercise): exercise is ExerciseMetadata => exercise !== undefined)
-  }));
-}
