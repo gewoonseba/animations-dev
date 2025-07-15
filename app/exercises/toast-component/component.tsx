@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./component.module.css";
 
 interface ToastProps {
@@ -15,7 +15,11 @@ function Toast({ index }: ToastProps) {
   }, []);
 
   return (
-    <div className={styles.toast} style={{ "--index": index } as React.CSSProperties} data-mounted={mounted}>
+    <div
+      className={styles.toast}
+      style={{ "--index": index } as React.CSSProperties}
+      data-mounted={mounted}
+    >
       <span className={styles.title}>Event Created</span>
       <span className={styles.description}>Monday, January 3rd at 6:00pm</span>
     </div>
