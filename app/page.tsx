@@ -11,7 +11,7 @@ export default function Home() {
           <li className="mb-1">
             <ExerciseLink
               href="/exercises/stacked-cards"
-              title="Transforms - Stacked Cards"
+              title="Stacked Cards"
             />
           </li>
         </ul>
@@ -21,33 +21,27 @@ export default function Home() {
         <h2 className="text-sm text-black mb-2">CSS Transitions</h2>
         <ul className="list-none p-0">
           <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/hover-circle"
-              title="Transitions - Hover Circle"
-            />
+            <ExerciseLink href="/exercises/hover-circle" title="Hover Circle" />
           </li>
           <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/card-hover"
-              title="Transitions - Card Hover"
-            />
+            <ExerciseLink href="/exercises/card-hover" title="Card Hover" />
           </li>
           <li className="mb-1">
             <ExerciseLink
               href="/exercises/download-arrow"
-              title="Transitions - Download Arrow"
+              title="Download Arrow"
             />
           </li>
           <li className="mb-1">
             <ExerciseLink
               href="/exercises/toast-component"
-              title="Transitions - Toast Component"
+              title="Toast Component"
             />
           </li>
           <li className="mb-1">
             <ExerciseLink
               href="/exercises/toast-component-starting-styles"
-              title="Transitions - Toast Component (With Starting Styles)"
+              title="Toast Component (With Starting Styles)"
             />
           </li>
         </ul>
@@ -57,10 +51,7 @@ export default function Home() {
         <h2 className="text-sm text-black mb-2">CSS Keyframes</h2>
         <ul className="list-none p-0">
           <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/text-reveal"
-              title="Keyframes - Text Reveal"
-            />
+            <ExerciseLink href="/exercises/text-reveal" title="Text Reveal" />
           </li>
         </ul>
       </section>
