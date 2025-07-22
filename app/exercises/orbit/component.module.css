@@ -1,3 +1,8 @@
+.container {
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
 .circle {
   height: 96px;
   width: 96px;
@@ -14,4 +19,18 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: #fad757;
+  animation: orbit 5s linear;
+  animation-iteration-count: infinite;
+}
+
+/* Double rotateY makes it so circle stays facing forward */
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(64px)
+      rotateY(360deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg) translateZ(64px)
+      rotateY(0deg);
+  }
 }
