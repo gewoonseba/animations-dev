@@ -4,7 +4,7 @@ import { StackedCardsComponent } from "./component";
 export default function StackedCardsPage() {
   return (
     <ExerciseDisplay
-      title="tacked Cards"
+      title="Stacked Cards"
       description="Cards stacked on top of each other using CSS transforms and grid layout"
       courseUrl="https://animations.dev/learn/css-animations/transforms"
     >
