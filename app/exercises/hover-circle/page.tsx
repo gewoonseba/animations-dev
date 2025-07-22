@@ -1,5 +1,5 @@
+import { ExerciseDisplay } from "../../components/ExerciseDisplay";
 import { HoverCircleComponent } from "./component";
-import { ExerciseDisplay } from "../ExerciseDisplay";
 
 export default function HoverCirclePage() {
   return (

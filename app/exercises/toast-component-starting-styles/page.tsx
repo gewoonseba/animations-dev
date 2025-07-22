@@ -1,5 +1,5 @@
 import { ExerciseDisplay } from "../../components/ExerciseDisplay";
-import { ToastComponentComponent } from "./component";
+import { ToastComponentStartingStylesComponent } from "./component";
 
 export default function ToastComponentPage() {
   return (
@@ -8,7 +8,7 @@ export default function ToastComponentPage() {
       description="A toast notification system with stacking animations and smooth transitions"
       courseUrl="https://animations.dev/learn/css-animations/transitions"
     >
-      <ToastComponentComponent />
+      <ToastComponentStartingStylesComponent />
     </ExerciseDisplay>
   );
 }
