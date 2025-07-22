@@ -59,6 +59,3 @@ alwaysApply: true
 - Ensure animations don't interfere with screen readers
 - Provide alternative states for users who can't see animations
 - Test with keyboard navigation
-
-- Use the latest stable versions of React and Next.js
-- Prefer CSS solutions over JavaScript for animations when possible
