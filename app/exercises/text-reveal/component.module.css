@@ -2,11 +2,13 @@
   font-size: 32px;
   font-weight: 600;
   letter-spacing: -0.05em;
+  overflow: hidden;
 }
 
 .h1 span {
-  transform: translateY(100%);
-  animation: reveal 0.5s ease forwards;
+  display: inline-block;
+  animation: reveal 1.3s cubic-bezier(0.075, 0.82, 0.165, 1) backwards;
+  animation-delay: calc(var(--index) * 0.02s);
 }
 
 .button {
