@@ -21,11 +21,11 @@ alwaysApply: false
 ## Props Interface Pattern
 
 ```typescript
-interface ComponentNameProps {
+interface CardHoverComponentProps {
   // props here
 }
 
-export function ComponentName({ prop1, prop2 }: ComponentNameProps) {
+export function CardHoverComponent({ prop1, prop2 }: CardHoverComponentProps) {
   // component logic
 }
 ```
@@ -39,7 +39,7 @@ export function ComponentName({ prop1, prop2 }: ComponentNameProps) {
 ## Path Aliases
 
 - Use `@/` prefix for imports from the root directory
-- Example: `import { Component } from "@/app/components/Component"`
+- Example: `import { ExerciseLink } from "@/app/components/ExerciseLink"`
 
 ## Exercise Display Pattern
 
@@ -47,17 +47,33 @@ All exercise pages should use the ExerciseDisplay component:
 
 ```typescript
 import { ExerciseDisplay } from "../../components/ExerciseDisplay";
-import { ComponentName } from "./component";
+import { CardHoverComponent } from "./component";
 
-export default function ComponentNamePage() {
+export default function CardHoverPage() {
   return (
     <ExerciseDisplay
-      title="Component Name"
-      description="Description of the animation"
-      courseUrl="https://animations.dev/learn/..."
+      title="Card Hover"
+      description="A card with a description that slides up on hover using smooth transitions"
+      courseUrl="https://animations.dev/learn/css-animations/transitions"
     >
-      <ComponentName />
+      <CardHoverComponent />
     </ExerciseDisplay>
   );
 }
 ```
+
+## Exercise Registration Pattern
+
+Add new exercises to the main page in `app/page.tsx`:
+
+```typescript
+<li className="mb-1">
+  <ExerciseLink href="/exercises/exercise-name" title="Exercise Title" />
+</li>
+```
+
+## Import Patterns
+
+- Use relative imports for ExerciseDisplay: `import { ExerciseDisplay } from "../../components/ExerciseDisplay"`
+- Use path aliases for shared components: `import { ExerciseLink } from "@/app/components/ExerciseLink"`
+- Use relative imports for local components: `import { ComponentName } from "./component"`
