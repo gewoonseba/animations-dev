@@ -4,7 +4,7 @@ import { CardHoverComponent } from "./component";
 export default function CardHoverPage() {
   return (
     <ExerciseDisplay
-      title="Transitions - Card Hover"
+      title="Card Hover"
       description="A card with a description that slides up on hover using smooth transitions"
       courseUrl="https://animations.dev/learn/css-animations/transitions"
     >

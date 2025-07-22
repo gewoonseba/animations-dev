@@ -53,6 +53,9 @@ export default function Home() {
           <li className="mb-1">
             <ExerciseLink href="/exercises/text-reveal" title="Text Reveal" />
           </li>
+          <li className="mb-1">
+            <ExerciseLink href="/exercises/orbit" title="Orbit" />
+          </li>
         </ul>
       </section>
     </div>
