@@ -1,0 +1,57 @@
+# CSS Animation Patterns
+
+## CSS Modules Structure
+
+- Use CSS modules for component-specific styles
+- Import as `styles` from `./component.module.css`
+- Apply classes using `className={styles.className}`
+
+## Animation Best Practices
+
+- Use CSS transitions for simple state changes (hover, focus, etc.)
+- Use CSS keyframes for complex animations
+- Prefer `transform` and `opacity` for performance
+- Use `will-change` property sparingly and only when needed
+
+## Common Animation Properties
+
+```css
+/* Transitions */
+transition: all 0.3s ease-in-out;
+transition: transform 0.2s ease-out;
+
+/* Keyframes */
+@keyframes animationName {
+  0% {
+    /* initial state */
+  }
+  50% {
+    /* middle state */
+  }
+  100% {
+    /* final state */
+  }
+}
+
+/* Animation */
+animation: animationName 1s ease-in-out infinite;
+```
+
+## Performance Considerations
+
+- Use `transform` instead of `top`, `left`, `width`, `height` for animations
+- Use `opacity` instead of `visibility` when possible
+- Avoid animating `box-shadow` and `border-radius` on every frame
+- Use `translate3d()` to force hardware acceleration when needed
+
+## Exercise-Specific Patterns
+
+- Each exercise should have its own CSS module file
+- Keep animations self-contained within the component
+- Use semantic class names that describe the animation behavior
+- Test animations at different speeds and with reduced motion preferences
+  description:
+  globs:
+  alwaysApply: false
+
+---

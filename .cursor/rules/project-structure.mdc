@@ -1,0 +1,39 @@
+# Animations.dev Project Structure
+
+This is a Next.js 15 project for learning CSS animations. The project follows a specific structure:
+
+## Main Entry Points
+
+- [app/page.tsx](mdc:app/page.tsx) - Main landing page with exercise categories
+- [app/layout.tsx](mdc:app/layout.tsx) - Root layout component
+- [app/exercises/layout.tsx](mdc:app/exercises/layout.tsx) - Layout for all exercise pages
+
+## Exercise Structure
+
+Each exercise follows this pattern:
+
+- `app/exercises/{exercise-name}/page.tsx` - Exercise page using ExerciseDisplay
+- `app/exercises/{exercise-name}/component.tsx` - The actual animation component
+- `app/exercises/{exercise-name}/component.module.css` - CSS modules for styling
+
+## Shared Components
+
+- [app/components/ExerciseDisplay.tsx](mdc:app/components/ExerciseDisplay.tsx) - Wrapper for displaying exercises
+- [app/components/ExerciseLink.tsx](mdc:app/components/ExerciseLink.tsx) - Navigation links between exercises
+
+## Configuration
+
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration with path aliases (`@/*`)
+- [package.json](mdc:package.json) - Dependencies including Next.js 15, React 19, and Tailwind CSS 4
+- [next.config.ts](mdc:next.config.ts) - Next.js configuration
+
+## Styling
+
+- Uses Tailwind CSS 4 with PostCSS
+- CSS modules for component-specific styles
+- Global styles in [app/globals.css](mdc:app/globals.css)
+  description:
+  globs:
+  alwaysApply: false
+
+---
