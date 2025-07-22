@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <h1 className="text-sm text-black mb-24">Animations.dev</h1>
 
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-sm text-black mb-2">CSS Transforms</h2>
         <ul className="list-none p-0">
           <li className="mb-1">
@@ -15,9 +15,9 @@ export default function Home() {
             />
           </li>
         </ul>
-      </div>
+      </section>
 
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-sm text-black mb-2">CSS Transitions</h2>
         <ul className="list-none p-0">
           <li className="mb-1">
@@ -51,7 +51,19 @@ export default function Home() {
             />
           </li>
         </ul>
-      </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm text-black mb-2">CSS Keyframes</h2>
+        <ul className="list-none p-0">
+          <li className="mb-1">
+            <ExerciseLink
+              href="/exercises/text-reveal"
+              title="Keyframes - Text Reveal"
+            />
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
