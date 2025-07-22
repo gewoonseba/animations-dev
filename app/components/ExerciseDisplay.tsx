@@ -28,7 +28,7 @@ export function ExerciseDisplay({
         View course material →
       </a>
 
-      <div className="mt-8 p-8 border border-neutral-100 rounded-lg flex justify-center items-center w-full h-96">
+      <div className="mt-8 p-8 border border-neutral-100 rounded-lg flex justify-center items-center w-full h-96 overflow-hidden">
         {children}
       </div>
     </>

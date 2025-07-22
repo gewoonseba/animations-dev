@@ -1,61 +1,63 @@
-import Link from "next/link";
+import { ExerciseLink } from "@/app/components/ExerciseLink";
 
 export default function Home() {
   return (
     <div>
       <h1 className="text-sm text-black mb-24">Animations.dev</h1>
 
-      <div className="mb-12">
-        <h2 className="text-sm text-black mb-2">CSS Transitions</h2>
-        <ul className="list-none p-0">
-          <li className="mb-1">
-            <Link
-              href="/exercises/hover-circle"
-              className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
-            >
-              Transitions - Hover Circle
-            </Link>
-          </li>
-          <li className="mb-1">
-            <Link
-              href="/exercises/card-hover"
-              className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
-            >
-              Transitions - Card Hover
-            </Link>
-          </li>
-          <li className="mb-1">
-            <Link
-              href="/exercises/download-arrow"
-              className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
-            >
-              Transitions - Download Arrow
-            </Link>
-          </li>
-          <li className="mb-1">
-            <Link
-              href="/exercises/toast-component"
-              className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
-            >
-              Transitions - Toast Component
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      <div className="mb-12">
+      <section className="mb-12">
         <h2 className="text-sm text-black mb-2">CSS Transforms</h2>
         <ul className="list-none p-0">
           <li className="mb-1">
-            <Link
+            <ExerciseLink
               href="/exercises/stacked-cards"
-              className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
-            >
-              Transforms - Stacked Cards
-            </Link>
+              title="Stacked Cards"
+            />
           </li>
         </ul>
-      </div>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm text-black mb-2">CSS Transitions</h2>
+        <ul className="list-none p-0">
+          <li className="mb-1">
+            <ExerciseLink href="/exercises/hover-circle" title="Hover Circle" />
+          </li>
+          <li className="mb-1">
+            <ExerciseLink href="/exercises/card-hover" title="Card Hover" />
+          </li>
+          <li className="mb-1">
+            <ExerciseLink
+              href="/exercises/download-arrow"
+              title="Download Arrow"
+            />
+          </li>
+          <li className="mb-1">
+            <ExerciseLink
+              href="/exercises/toast-component"
+              title="Toast Component"
+            />
+          </li>
+          <li className="mb-1">
+            <ExerciseLink
+              href="/exercises/toast-component-starting-styles"
+              title="Toast Component (With Starting Styles)"
+            />
+          </li>
+        </ul>
+      </section>
+
+      <section className="mb-12">
+        <h2 className="text-sm text-black mb-2">CSS Keyframes</h2>
+        <ul className="list-none p-0">
+          <li className="mb-1">
+            <ExerciseLink href="/exercises/text-reveal" title="Text Reveal" />
+          </li>
+          <li className="mb-1">
+            <ExerciseLink href="/exercises/orbit" title="Orbit" />
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }
