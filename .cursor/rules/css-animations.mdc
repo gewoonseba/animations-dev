@@ -1,3 +1,7 @@
+---
+alwaysApply: false
+---
+
 # CSS Animation Patterns
 
 ## CSS Modules Structure
@@ -50,8 +54,3 @@ animation: animationName 1s ease-in-out infinite;
 - Keep animations self-contained within the component
 - Use semantic class names that describe the animation behavior
 - Test animations at different speeds and with reduced motion preferences
-  description:
-  globs:
-  alwaysApply: false
-
----

@@ -32,8 +32,3 @@ Each exercise follows this pattern:
 - Uses Tailwind CSS 4 with PostCSS
 - CSS modules for component-specific styles
 - Global styles in [app/globals.css](mdc:app/globals.css)
-  description:
-  globs:
-  alwaysApply: false
-
----
