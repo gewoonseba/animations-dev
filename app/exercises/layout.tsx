@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface ExerciseLayoutProps {
   children: React.ReactNode;
@@ -6,14 +6,14 @@ interface ExerciseLayoutProps {
 
 export default function ExerciseLayout({ children }: ExerciseLayoutProps) {
   return (
-    <div className="p-8 max-w-3xl mx-auto">
+    <div className="mx-auto max-w-3xl p-8">
       <Link
+        className="text-neutral-500 text-sm no-underline hover:text-neutral-800"
         href="/"
-        className="text-neutral-500 no-underline hover:text-neutral-800 text-sm"
       >
         ← Back to exercises
       </Link>
-      
+
       {children}
     </div>
   );

@@ -3,7 +3,7 @@
   width: 56px;
   background: #fad655;
   border-radius: 50%;
-  transition: transform .2s ease;
+  transition: transform 0.2s ease;
 }
 
 .box:hover {
