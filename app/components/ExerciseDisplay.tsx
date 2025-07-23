@@ -13,22 +13,22 @@ export function ExerciseDisplay({
 }: ExerciseDisplayProps) {
   return (
     <>
-      <h1 className="mt-8 mb-2 text-sm font-semibold text-neutral-900">
+      <h1 className="mt-8 mb-2 font-semibold text-neutral-900 text-sm">
         {title}
       </h1>
 
-      <p className="mb-4 text-sm text-neutral-600">{description}</p>
+      <p className="mb-4 text-neutral-600 text-sm">{description}</p>
 
       <a
+        className="text-neutral-500 text-sm no-underline hover:text-neutral-800"
         href={courseUrl}
-        target="_blank"
         rel="noopener noreferrer"
-        className="text-neutral-500 no-underline hover:text-neutral-800 text-sm"
+        target="_blank"
       >
         View course material →
       </a>
 
-      <div className="mt-8 p-8 border border-neutral-100 rounded-lg flex justify-center items-center w-full h-96 overflow-hidden">
+      <div className="mt-8 flex h-96 w-full items-center justify-center overflow-hidden rounded-lg border border-neutral-100 p-8">
         {children}
       </div>
     </>

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 
 interface ExerciseLinkProps {
   href: string;
@@ -8,8 +8,8 @@ interface ExerciseLinkProps {
 export function ExerciseLink({ href, title }: ExerciseLinkProps) {
   return (
     <Link
+      className="text-neutral-500 text-sm decoration-solid underline-offset-auto hover:underline"
       href={href}
-      className="text-sm text-neutral-500 hover:underline decoration-solid underline-offset-auto"
     >
       {title}
     </Link>
