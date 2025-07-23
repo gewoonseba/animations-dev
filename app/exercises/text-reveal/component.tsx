@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import styles from "./component.module.css";
+import { useState } from 'react';
+import styles from './component.module.css';
 
 export function TextReveal() {
   const [reset, setReset] = useState(0);
 
-  const WORD = "Animations";
+  const WORD = 'Animations';
 
   return (
     <div>
       <div key={reset}>
         <h1 className={styles.h1}>
-          {WORD.split("").map((char, index) => (
+          {WORD.split('').map((char, index) => (
             <span
               key={index}
-              style={{ "--index": index } as React.CSSProperties}
+              style={{ '--index': index } as React.CSSProperties}
             >
               {char}
             </span>

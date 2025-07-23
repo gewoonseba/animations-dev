@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import styles from "./component.module.css";
+import type React from 'react';
+import { useEffect, useState } from 'react';
+import styles from './component.module.css';
 
 interface ToastProps {
   index: number;
@@ -17,8 +18,8 @@ function Toast({ index }: ToastProps) {
   return (
     <div
       className={styles.toast}
-      style={{ "--index": index } as React.CSSProperties}
       data-mounted={mounted}
+      style={{ '--index': index } as React.CSSProperties}
     >
       <span className={styles.title}>Event Created</span>
       <span className={styles.description}>Monday, January 3rd at 6:00pm</span>
@@ -33,7 +34,7 @@ export function ToastComponentComponent() {
     <div className={styles.wrapper}>
       <div className={styles.toaster}>
         {Array.from({ length: toasts }).map((_, i) => (
-          <Toast key={i} index={toasts - i - 1} />
+          <Toast index={toasts - i - 1} key={i} />
         ))}
       </div>
       <button

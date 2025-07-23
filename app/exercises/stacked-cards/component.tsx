@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./component.module.css";
+import type React from 'react';
+import styles from './component.module.css';
 
 const LENGTH = 3;
 
@@ -10,7 +10,7 @@ export function StackedCardsComponent() {
         <div
           className={styles.card}
           key={i}
-          style={{ "--index": LENGTH - 1 - i } as React.CSSProperties}
+          style={{ '--index': LENGTH - 1 - i } as React.CSSProperties}
         />
       ))}
     </div>
