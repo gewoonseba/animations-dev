@@ -1,5 +1,5 @@
-import { ExerciseDisplay } from '../../components/ExerciseDisplay';
-import { StackedCardsComponent } from './component';
+import { ExerciseDisplay } from "@/app/components/ExerciseDisplay";
+import { StackedCardsComponent } from "./component";
 
 export default function StackedCardsPage() {
   return (
