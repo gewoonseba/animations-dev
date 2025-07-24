@@ -5,7 +5,7 @@ export default function CoinSpinPage() {
   return (
     <ExerciseDisplay
       courseUrl="https://animations.dev/learn/css-animations/keyframe-animations"
-      description="Coin rotating in 3D Spacee"
+      description="Coin rotating in 3D space"
       title="Coin Spin"
     >
       <CoinSpinComponent />

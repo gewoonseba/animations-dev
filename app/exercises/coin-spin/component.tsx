@@ -1,20 +1,24 @@
-import styles from './component.module.css';
+import styles from "./component.module.css";
 
 export function CoinSpinComponent() {
   return (
-    <div className={styles.coin}>
-      <CoinIcon />
+    <div className={styles.wrapper}>
+      <div className={styles.coinSide} />
+      <div className={`${styles.coin} ${styles.frontOuter} `}>
+        <CoinIcon />
+      </div>
+      <div className={`${styles.coin} ${styles.frontInner} `} />
+      <div className={`${styles.coin} ${styles.backOuter} `}>
+        <CoinIcon />
+      </div>
+      <div className={`${styles.coin} ${styles.backInner} `} />
     </div>
   );
 }
 
 function CoinIcon() {
   return (
-    <svg
-      fill="none"
-      viewBox="0 0 718 718"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg fill="none" viewBox="0 0 718 718" xmlns="http://www.w3.org/2000/svg">
       <title>Gold coin</title>
       <path d="M170 119H548V599H170V119Z" fill="#F8A400" />
       <path
@@ -24,4 +28,5 @@ function CoinIcon() {
         fillRule="evenodd"
       />
     </svg>
-  )
+  );
+}
