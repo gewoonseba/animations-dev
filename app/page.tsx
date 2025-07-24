@@ -1,4 +1,4 @@
-import { ExerciseLink } from '@/app/components/ExerciseLink';
+import { ExerciseLink } from "@/app/components/ExerciseLink";
 
 export default function Home() {
   return (
@@ -55,6 +55,9 @@ export default function Home() {
           </li>
           <li className="mb-1">
             <ExerciseLink href="/exercises/orbit" title="Orbit" />
+          </li>
+          <li>
+            <ExerciseLink href="/exercises/coin-spin" title="Coin Spin" />
           </li>
         </ul>
       </section>
