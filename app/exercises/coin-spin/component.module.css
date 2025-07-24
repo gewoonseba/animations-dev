@@ -1,6 +1,11 @@
 .wrapper {
-  height: 56px;
-  width: 56px;
+  --coin-size: 56px;
+  --coin-thickness: 6px;
+  --primary-color: #ffcd6c;
+  --secondary-color: #ffaa04;
+
+  height: var(--coin-size);
+  width: var(--coin-size);
   animation: spin 2s cubic-bezier(0.785, 0.135, 0.15, 0.86);
   animation-iteration-count: infinite;
   transform-style: preserve-3d;
@@ -11,36 +16,36 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #ffcd6c;
+  background: var(--primary-color);
   backface-visibility: hidden;
 }
 
 .frontOuter {
-  transform: translateZ(3px);
+  transform: translateZ(calc(var(--coin-thickness) / 2));
 }
 
 .frontInner {
-  background: #ffaa04;
-  transform: rotateY(180deg) translateZ(-3px);
+  background: var(--secondary-color);
+  transform: rotateY(180deg) translateZ(calc(-1 * var(--coin-thickness) / 2));
 }
 
 .backOuter {
-  transform: rotateY(180deg) translateZ(3px);
+  transform: rotateY(180deg) translateZ(calc(var(--coin-thickness) / 2));
 }
 
 .backInner {
-  background: #ffaa04;
-  transform: translateZ(-3px);
+  background: var(--secondary-color);
+  transform: translateZ(calc(-1 * var(--coin-thickness) / 2));
 }
 
 .coinSide {
   position: absolute;
-  left: 27px;
+  left: calc(var(--coin-size) / 2);
   top: 0px;
-  height: 56px;
-  width: 6px;
+  height: var(--coin-size);
+  width: var(--coin-thickness);
   transform: rotateY(90deg);
-  background: #ffaa04;
+  background: var(--secondary-color);
 }
 
 @keyframes spin {
