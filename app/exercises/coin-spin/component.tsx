@@ -4,14 +4,14 @@ export function CoinSpinComponent() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.coinSide} />
-      <div className={`${styles.coin} ${styles.frontOuter} `}>
+      <div className={styles.frontOuter}>
         <CoinIcon />
       </div>
-      <div className={`${styles.coin} ${styles.frontInner} `} />
-      <div className={`${styles.coin} ${styles.backOuter} `}>
+      <div className={styles.frontInner} />
+      <div className={styles.backOuter}>
         <CoinIcon />
       </div>
-      <div className={`${styles.coin} ${styles.backInner} `} />
+      <div className={styles.backInner} />
     </div>
   );
 }

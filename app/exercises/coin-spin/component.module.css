@@ -21,19 +21,23 @@
 }
 
 .frontOuter {
+  composes: coin;
   transform: translateZ(calc(var(--coin-thickness) / 2));
 }
 
 .frontInner {
+  composes: coin;
   background: var(--secondary-color);
   transform: rotateY(180deg) translateZ(calc(-1 * var(--coin-thickness) / 2));
 }
 
 .backOuter {
+  composes: coin;
   transform: rotateY(180deg) translateZ(calc(var(--coin-thickness) / 2));
 }
 
 .backInner {
+  composes: coin;
   background: var(--secondary-color);
   transform: translateZ(calc(-1 * var(--coin-thickness) / 2));
 }
