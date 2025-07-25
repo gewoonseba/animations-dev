@@ -61,6 +61,18 @@ export default function Home() {
           </li>
         </ul>
       </section>
+
+      <section className="mb-12">
+        <h2 className="mb-2 text-black text-sm">Clip Path</h2>
+        <ul className="list-non p-0">
+          <li className="mb-1">
+            <ExerciseLink
+              href="/exercises/hold-to-delete"
+              title="Hold to delete"
+            />
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

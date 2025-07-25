@@ -1,0 +1,32 @@
+.button {
+  position: relative;
+}
+
+.commonButtonStyles {
+  display: flex;
+  height: 40px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  padding-inline: 24px;
+  font-weight: 500;
+}
+
+.base {
+  composes: commonButtonStyles;
+  color: #21201c;
+  background-color: #f6f5f5;
+}
+
+.overlay {
+  composes: commonButtonStyles;
+  position: absolute;
+  color: #e5484d;
+  background-color: #ffdbdc;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s linear;
+}
+
+.button:active .overlay {
+  clip-path: inset(0 0 0 0);
+}
