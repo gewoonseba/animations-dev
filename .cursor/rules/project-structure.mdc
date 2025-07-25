@@ -16,13 +16,13 @@ This is a Next.js 15 project for learning CSS animations. The project follows a 
 
 Each exercise follows this pattern:
 
-- `app/exercises/{exercise-name}/page.tsx` - Exercise page using ExerciseDisplay
+- `app/exercises/{exercise-name}/page.tsx` - Exercise page using ExerciseDetail
 - `app/exercises/{exercise-name}/component.tsx` - The actual animation component
 - `app/exercises/{exercise-name}/component.module.css` - CSS modules for styling
 
 ## Shared Components
 
-- [app/components/ExerciseDisplay.tsx](mdc:app/components/ExerciseDisplay.tsx) - Wrapper for displaying exercises
+- [app/components/ExerciseDetail.tsx](mdc:app/components/ExerciseDetail.tsx) - Wrapper for displaying exercises
 - [app/components/ExerciseLink.tsx](mdc:app/components/ExerciseLink.tsx) - Navigation links between exercises
 
 ## Configuration

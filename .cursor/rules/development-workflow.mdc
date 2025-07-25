@@ -15,7 +15,7 @@ alwaysApply: true
 1. Create a new directory in `app/exercises/{exercise-name}/`
 2. Create `component.tsx` with the animation component
 3. Create `component.module.css` for styles
-4. Create `page.tsx` using ExerciseDisplay wrapper
+4. Create `page.tsx` using ExerciseDetail wrapper
 5. Add the exercise to the main page in [app/page.tsx](mdc:app/page.tsx)
 
 ## Code Quality

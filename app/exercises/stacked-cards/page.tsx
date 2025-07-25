@@ -1,14 +1,14 @@
-import { ExerciseDisplay } from "@/app/components/ExerciseDisplay";
+import { ExerciseDetail } from "@/app/components/ExerciseDetail";
 import { StackedCardsComponent } from "./component";
 
 export default function StackedCardsPage() {
   return (
-    <ExerciseDisplay
+    <ExerciseDetail
       courseUrl="https://animations.dev/learn/css-animations/transforms"
       description="Cards stacked on top of each other using CSS transforms and grid layout"
       title="Stacked Cards"
     >
       <StackedCardsComponent />
-    </ExerciseDisplay>
+    </ExerciseDetail>
   );
 }

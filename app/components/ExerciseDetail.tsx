@@ -1,16 +1,16 @@
-interface ExerciseDisplayProps {
+interface ExerciseDetailProps {
   title: string;
   description: string;
   courseUrl: string;
   children: React.ReactNode;
 }
 
-export function ExerciseDisplay({
+export function ExerciseDetail({
   title,
   description,
   courseUrl,
   children,
-}: ExerciseDisplayProps) {
+}: ExerciseDetailProps) {
   return (
     <>
       <h1 className="mt-8 mb-2 font-semibold text-neutral-900 text-sm">

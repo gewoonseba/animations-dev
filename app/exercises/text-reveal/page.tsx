@@ -1,14 +1,14 @@
-import { ExerciseDisplay } from '../../components/ExerciseDisplay';
-import { TextReveal } from './component';
+import { ExerciseDetail } from "../../components/ExerciseDetail";
+import { TextReveal } from "./component";
 
 export default function TextRevealPage() {
   return (
-    <ExerciseDisplay
+    <ExerciseDetail
       courseUrl="https://animations.dev/learn/css-animations/keyframe-animations"
       description="A text reveal animation using keyframes"
       title="Text Reveal"
     >
       <TextReveal />
-    </ExerciseDisplay>
+    </ExerciseDetail>
   );
 }
