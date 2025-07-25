@@ -1,78 +1,64 @@
 import { ExerciseLink } from "@/app/components/ExerciseLink";
+import { ExerciseSection } from "@/app/components/ExerciseSection";
 
 export default function Home() {
   return (
     <div>
       <h1 className="mb-24 text-black text-sm">Animations.dev</h1>
 
-      <section className="mb-12">
-        <h2 className="mb-2 text-black text-sm">CSS Transforms</h2>
-        <ul className="list-none p-0">
-          <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/stacked-cards"
-              title="Stacked Cards"
-            />
-          </li>
-        </ul>
-      </section>
+      <ExerciseSection title="CSS Transforms">
+        <ExerciseLink href="/exercises/stacked-cards" title="Stacked Cards" />
+      </ExerciseSection>
 
-      <section className="mb-12">
-        <h2 className="mb-2 text-black text-sm">CSS Transitions</h2>
-        <ul className="list-none p-0">
-          <li className="mb-1">
-            <ExerciseLink href="/exercises/hover-circle" title="Hover Circle" />
-          </li>
-          <li className="mb-1">
-            <ExerciseLink href="/exercises/card-hover" title="Card Hover" />
-          </li>
-          <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/download-arrow"
-              title="Download Arrow"
-            />
-          </li>
-          <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/toast-component"
-              title="Toast Component"
-            />
-          </li>
-          <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/toast-component-starting-styles"
-              title="Toast Component (With Starting Styles)"
-            />
-          </li>
-        </ul>
-      </section>
+      <ExerciseSection title="CSS Transitions">
+        <ExerciseLink
+          href="/exercises/hover-circle"
+          key="hover-circle"
+          title="Hover Circle"
+        />
+        <ExerciseLink
+          href="/exercises/card-hover"
+          key="card-hover"
+          title="Card Hover"
+        />
+        <ExerciseLink
+          href="/exercises/download-arrow"
+          key="download-arrow"
+          title="Download Arrow"
+        />
+        <ExerciseLink
+          href="/exercises/toast-component"
+          key="toast-component"
+          title="Toast Component"
+        />
+        <ExerciseLink
+          href="/exercises/toast-component-starting-styles"
+          key="toast-component-starting-styles"
+          title="Toast Component (With Starting Styles)"
+        />
+      </ExerciseSection>
 
-      <section className="mb-12">
-        <h2 className="mb-2 text-black text-sm">CSS Keyframes</h2>
-        <ul className="list-none p-0">
-          <li className="mb-1">
-            <ExerciseLink href="/exercises/text-reveal" title="Text Reveal" />
-          </li>
-          <li className="mb-1">
-            <ExerciseLink href="/exercises/orbit" title="Orbit" />
-          </li>
-          <li>
-            <ExerciseLink href="/exercises/coin-spin" title="Coin Spin" />
-          </li>
-        </ul>
-      </section>
+      <ExerciseSection title="CSS Keyframes">
+        <ExerciseLink
+          href="/exercises/text-reveal"
+          key="text-reveal"
+          title="Text Reveal"
+        />
+        <ExerciseLink href="/exercises/orbit" key="orbit" title="Orbit" />
+        <ExerciseLink
+          href="/exercises/coin-spin"
+          key="coin-spin"
+          title="Coin Spin"
+        />
+      </ExerciseSection>
 
-      <section className="mb-12">
-        <h2 className="mb-2 text-black text-sm">Clip Path</h2>
-        <ul className="list-non p-0">
-          <li className="mb-1">
-            <ExerciseLink
-              href="/exercises/hold-to-delete"
-              title="Hold to delete"
-            />
-          </li>
-        </ul>
-      </section>
+      <ExerciseSection title="Clip Path">
+        <ExerciseLink
+          href="/exercises/hold-to-delete"
+          key="hold-to-delete"
+          title="Hold to delete"
+        />
+      </ExerciseSection>
     </div>
   );
 }
