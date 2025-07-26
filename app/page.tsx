@@ -58,6 +58,11 @@ export default function Home() {
           key="hold-to-delete"
           title="Hold to delete"
         />
+        <ExerciseLink
+          href="/exercises/tabs-transition"
+          key="tabs-transition"
+          title="Tabs Transition"
+        />
       </ExerciseSection>
     </div>
   );
