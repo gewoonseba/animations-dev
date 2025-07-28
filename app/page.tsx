@@ -64,6 +64,13 @@ export default function Home() {
           title="Tabs Transition"
         />
       </ExerciseSection>
+      <ExerciseSection title="Motion">
+        <ExerciseLink
+          href="/exercises/login-button"
+          key="login-button"
+          title="Login Button"
+        />
+      </ExerciseSection>
     </div>
   );
 }
