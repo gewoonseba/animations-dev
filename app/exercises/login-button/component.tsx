@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import styles from "./component.module.css";
 
@@ -33,7 +34,17 @@ export function LoginButtonComponent() {
         }}
         type="button"
       >
-        <span>{buttonCopy[buttonState]}</span>
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.span
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 25, opacity: 0 }}
+            initial={{ y: -25, opacity: 0 }}
+            key={buttonState}
+            transition={{ type: "spring", bounce: 0, visualDuration: 0.3 }}
+          >
+            {buttonCopy[buttonState]}
+          </motion.span>
+        </AnimatePresence>
       </button>
     </div>
   );
