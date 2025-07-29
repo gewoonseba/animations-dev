@@ -12,11 +12,7 @@ alwaysApply: true
 
 ## Adding New Exercises
 
-1. Create a new directory in `app/exercises/{exercise-name}/`
-2. Create `component.tsx` with the animation component
-3. Create `component.module.css` for styles
-4. Create `page.tsx` using ExerciseDetail wrapper
-5. Add the exercise to the main page in [app/page.tsx](mdc:app/page.tsx)
+See [Exercise Creation Workflow Rules](./exercise-creation.mdc) for detailed instructions on adding new exercises, including file structure, TypeScript and CSS Modules conversion, and project conventions.
 
 ## Code Quality
 
@@ -32,30 +28,3 @@ alwaysApply: true
 - Use PascalCase for component names: `CardHoverComponent`
 - Use camelCase for CSS class names in modules
 - Use descriptive names that explain the animation behavior
-
-## Testing Animations
-
-- Test on different devices and screen sizes
-- Verify animations work with reduced motion preferences
-- Check performance on lower-end devices
-- Ensure animations enhance UX, not distract from it
-
-## Dependencies
-
-- Keep dependencies minimal and focused
-- Use the latest stable versions of React and Next.js
-- Prefer CSS solutions over JavaScript for animations when possible
-
-## Performance Guidelines
-
-- Use `transform` and `opacity` for animations when possible
-- Avoid animating layout-triggering properties
-- Test animations on lower-end devices
-- Consider using `will-change` property sparingly
-
-## Accessibility Considerations
-
-- Respect `prefers-reduced-motion` media query
-- Ensure animations don't interfere with screen readers
-- Provide alternative states for users who can't see animations
-- Test with keyboard navigation

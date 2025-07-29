@@ -1,0 +1,130 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+
+# Exercise Creation Workflow Rules
+
+## Instruction summary
+
+1. Create a new directory in `app/exercises/{exercise-name}/`
+2. Create `component.tsx` with the animation component
+3. Create `component.module.css` for styles
+4. Create `page.tsx` using ExerciseDetail wrapper
+5. Add the exercise to the main page in [app/page.tsx](mdc:app/page.tsx)
+
+## Initial Exercise Setup
+
+When creating a new exercise, follow this exact workflow:
+
+### 1. Create Basic Structure
+
+- Create directory: `app/exercises/{exercise-name}/`
+- Create `component.tsx` with simple hello world:
+
+```typescript
+export function ExerciseNameComponent() {
+  return (
+    <div className="flex min-h-[200px] items-center justify-center">
+      <p>Hello World</p>
+    </div>
+  );
+}
+```
+
+- Create `component.module.css` with placeholder:
+
+```css
+/* Exercise Name Styles */
+```
+
+- Create `page.tsx` using ExerciseDetail wrapper:
+
+```typescript
+import { ExerciseDetail } from "../../components/ExerciseDetail";
+import { ExerciseNameComponent } from "./component";
+
+export default function ExerciseNamePage() {
+  return (
+    <ExerciseDetail
+      title="Exercise Name"
+      description="A description of the exercise"
+      courseUrl="https://animations.dev/learn/css-animations/transitions"
+    >
+      <ExerciseNameComponent />
+    </ExerciseDetail>
+  );
+}
+```
+
+### 2. Add to Main Page
+
+Add the exercise to `app/page.tsx` in the appropriate section:
+
+```typescript
+<ExerciseLink
+  href="/exercises/exercise-name"
+  key="exercise-name"
+  title="Exercise Name"
+/>
+```
+
+## Converting Provided Code to TypeScript + CSS Modules
+
+When provided with JSX code to convert:
+
+### 1. TypeScript Conversion Rules
+
+- Convert to named exports: `export function ComponentName()`
+- Add proper TypeScript interfaces for props
+- Add type annotations for state variables
+- Use `as const` for object literals that need type safety
+- Fix all linter errors (use `new Array()`, add `type="button"`, etc.)
+
+### 2. CSS Modules Conversion Rules
+
+- Convert all CSS classes to camelCase
+- Move all styles to `component.module.css`
+- Update all `className` references to use `styles.className`
+- Keep all original styling, animations, and functionality exactly the same
+
+### 3. Component Inlining Rules
+
+- If multiple components are provided, inline them into the main `component.tsx` file
+- Keep the Spinner or other utility components in the same file
+- Maintain all original functionality and behavior
+- Preserve all timing, state transitions, and user interactions
+
+### 4. File Structure
+
+```
+app/exercises/{exercise-name}/
+├── component.tsx      # Main component (TypeScript + inline components)
+├── component.module.css # All styles (CSS modules)
+└── page.tsx          # Page wrapper using ExerciseDetail
+```
+
+## Key Principles
+
+- **Keep functionality exactly the same** - no changes to behavior, timing, or user experience
+- **Follow project patterns** - use established naming conventions and file structure
+- **Fix all linter errors** - ensure code quality and consistency
+- **Maintain accessibility** - preserve any existing accessibility features
+- **Use proper TypeScript** - add appropriate types and interfaces
+
+## Example Conversion Pattern
+
+```typescript
+// Before (JSX)
+export default function Component() {
+  const [state, setState] = useState("idle");
+  return <div className="wrapper">...</div>;
+}
+
+// After (TypeScript + CSS Modules)
+export function Component() {
+  const [state, setState] = useState<StateType>("idle");
+  return <div className={styles.wrapper}>...</div>;
+}
+```
