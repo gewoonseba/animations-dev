@@ -75,6 +75,11 @@ export default function Home() {
           key="animating-height"
           title="Animating Height"
         />
+        <ExerciseLink
+          href="/exercises/appstore-list"
+          key="appstore-list"
+          title="App Store List"
+        />
       </ExerciseSection>
     </div>
   );
