@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import styles from "./component.module.css";
+import { useOnClickOutside } from "usehooks-ts";
 
 interface Game {
   title: string;
@@ -11,47 +11,30 @@ interface Game {
   image: string;
 }
 
-export function AppstoreListComponent() {
+export default function SharedLayout() {
   const [activeGame, setActiveGame] = useState<Game | null>(null);
   const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setActiveGame(null));
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        setActiveGame(null);
-      }
-    }
-
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setActiveGame(null);
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("keydown", onKeyDown);
-    };
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
-
-  const handleGameClick = (game: Game) => {
-    setActiveGame(game);
-  };
 
   return (
     <>
       {activeGame ? (
         <>
-          <div className={styles.overlay} />
-          <div className={styles.activeGame}>
-            <div
-              className={styles.inner}
-              ref={ref}
-              style={{ borderRadius: 12 }}
-            >
-              <div className={styles.header}>
+          <div className="overlay" />
+          <div className="active-game">
+            <div className="inner" ref={ref} style={{ borderRadius: 12 }}>
+              <div className="header">
                 <Image
                   alt=""
                   height={56}
@@ -59,50 +42,44 @@ export function AppstoreListComponent() {
                   style={{ borderRadius: 12 }}
                   width={56}
                 />
-                <div className={styles.headerInner}>
-                  <div className={styles.contentWrapper}>
-                    <h2 className={styles.gameTitle}>{activeGame.title}</h2>
-                    <p className={styles.gameDescription}>
-                      {activeGame.description}
-                    </p>
+                <div className="header-inner">
+                  <div className="content-wrapper">
+                    <h2 className="game-title">{activeGame.title}</h2>
+                    <p className="game-description">{activeGame.description}</p>
                   </div>
-                  <button className={styles.button} type="button">
+                  <button className="button" type="button">
                     Get
                   </button>
                 </div>
               </div>
-              <p className={styles.longDescription}>
-                {activeGame.longDescription}
-              </p>
+              <p className="long-description">{activeGame.longDescription}</p>
             </div>
           </div>
         </>
       ) : null}
-      <ul className={styles.list}>
+      <ul className="list">
         {GAMES.map((game) => (
-          <li key={game.title} style={{ borderRadius: 8 }}>
-            <button
-              className={styles.gameButton}
-              onClick={() => handleGameClick(game)}
-              type="button"
-            >
-              <Image
-                alt=""
-                height={56}
-                src={game.image}
-                style={{ borderRadius: 12 }}
-                width={56}
-              />
-              <div className={styles.gameWrapper}>
-                <div className={styles.contentWrapper}>
-                  <h2 className={styles.gameTitle}>{game.title}</h2>
-                  <p className={styles.gameDescription}>{game.description}</p>
-                </div>
-                <button className={styles.button} type="button">
-                  Get
-                </button>
+          <li
+            key={game.title}
+            onClick={() => setActiveGame(game)}
+            style={{ borderRadius: 8 }}
+          >
+            <Image
+              alt=""
+              height={56}
+              src={game.image}
+              style={{ borderRadius: 12 }}
+              width={56}
+            />
+            <div className="game-wrapper">
+              <div className="content-wrapper">
+                <h2 className="game-title">{game.title}</h2>
+                <p className="game-description">{game.description}</p>
               </div>
-            </button>
+              <button className="button" type="button">
+                Get
+              </button>
+            </div>
           </li>
         ))}
       </ul>
@@ -143,6 +120,7 @@ const GAMES: Game[] = [
     image:
       "https://animations-on-the-web-git-how-i-use-3066e1-emilkowalski-s-team.vercel.app/how-i-use-framer-motion/how-i-code-animations/pirate.png",
   },
+
   {
     title: "Lost in the mountains",
     description: "Find your way home.",
