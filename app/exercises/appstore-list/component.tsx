@@ -1,6 +1,7 @@
+/** biome-ignore-all lint/performance/noImgElement: <Just testing framer motion> */
 "use client";
 
-import Image from "next/image";
+import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 import styles from "./component.module.css";
@@ -32,71 +33,110 @@ export function AppstoreListComponent() {
 
   return (
     <>
-      {activeGame ? (
-        <>
-          <div className={styles.overlay} />
-          <div className={styles.activeGame}>
-            <div
-              className={styles.inner}
-              ref={ref}
-              style={{ borderRadius: 12 }}
-            >
-              <div className={styles.header}>
-                <Image
-                  alt=""
-                  height={56}
-                  src={activeGame.image}
-                  style={{ borderRadius: 12 }}
-                  width={56}
-                />
-                <div className={styles.headerInner}>
-                  <div className={styles.contentWrapper}>
-                    <h2 className={styles.gameTitle}>{activeGame.title}</h2>
-                    <p className={styles.gameDescription}>
-                      {activeGame.description}
-                    </p>
+      <AnimatePresence>
+        {activeGame ? (
+          <>
+            <motion.div
+              animate={{ opacity: 1 }}
+              className={styles.overlay}
+              exit={{ opacity: 0 }}
+              initial={{ opacity: 0 }}
+            />
+            <div className={styles.activeGame}>
+              <motion.div
+                className={styles.inner}
+                layoutId={`wrapper-${activeGame.title}`}
+                ref={ref}
+                style={{ borderRadius: 12 }}
+              >
+                <div className={styles.header}>
+                  <motion.img
+                    alt=""
+                    height={56}
+                    layoutId={`img-${activeGame.title}`}
+                    src={activeGame.image}
+                    style={{ borderRadius: 12 }}
+                    width={56}
+                  />
+                  <div className={styles.headerInner}>
+                    <div className={styles.contentWrapper}>
+                      <motion.h2
+                        className={styles.gameTitle}
+                        layoutId={`title-${activeGame.title}`}
+                      >
+                        {activeGame.title}
+                      </motion.h2>
+                      <motion.p
+                        className={styles.gameDescription}
+                        layoutId={`descr-${activeGame.title}`}
+                      >
+                        {activeGame.description}
+                      </motion.p>
+                    </div>
+                    <motion.button
+                      className={styles.button}
+                      layoutId={`btn-${activeGame.title}`}
+                      type="button"
+                    >
+                      Get
+                    </motion.button>
                   </div>
-                  <button className={styles.button} type="button">
-                    Get
-                  </button>
                 </div>
-              </div>
-              <p className={styles.longDescription}>
-                {activeGame.longDescription}
-              </p>
+                <motion.p
+                  animate={{ opacity: 1 }}
+                  className={styles.longDescription}
+                  exit={{ opacity: 0 }}
+                  initial={{ opacity: 0 }}
+                  transition={{ duration: 0.1 }}
+                >
+                  {activeGame.longDescription}
+                </motion.p>
+              </motion.div>
             </div>
-          </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
+      </AnimatePresence>
       <ul className={styles.list}>
         {GAMES.map((game) => (
-          // biome-ignore lint/a11y/useSemanticElements: <Wants to change this to a button, but not possible>
-          <li
+          <motion.li
             key={game.title}
+            layoutId={`wrapper-${game.title}`}
             onClick={() => setActiveGame(game)}
-            onKeyDown={() => setActiveGame(game)}
-            // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: <Wants to change this to a button, but not possible>
-            role="button"
             style={{ borderRadius: 8 }}
             tabIndex={0}
           >
-            <Image
+            <motion.img
               alt=""
               height={56}
+              layoutId={`img-${game.title}`}
               src={game.image}
               style={{ borderRadius: 12 }}
               width={56}
             />
             <div className={styles.gameWrapper}>
               <div className={styles.contentWrapper}>
-                <h2 className={styles.gameTitle}>{game.title}</h2>
-                <p className={styles.gameDescription}>{game.description}</p>
+                <motion.h2
+                  className={styles.gameTitle}
+                  layoutId={`title-${game.title}`}
+                >
+                  {game.title}
+                </motion.h2>
+                <motion.p
+                  className={styles.gameDescription}
+                  layoutId={`descr-${game.title}`}
+                >
+                  {game.description}
+                </motion.p>
               </div>
-              <button className={styles.button} type="button">
+              <motion.button
+                className={styles.button}
+                layoutId={`btn-${game.title}`}
+                type="button"
+              >
                 Get
-              </button>
+              </motion.button>
             </div>
-          </li>
+          </motion.li>
         ))}
       </ul>
     </>
