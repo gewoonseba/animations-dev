@@ -70,6 +70,11 @@ export default function Home() {
           key="login-button"
           title="Login Button"
         />
+        <ExerciseLink
+          href="/exercises/animating-height"
+          key="animating-height"
+          title="Animating Height"
+        />
       </ExerciseSection>
     </div>
   );

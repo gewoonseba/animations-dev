@@ -81,6 +81,7 @@ When provided with JSX code to convert:
 - Add type annotations for state variables
 - Use `as const` for object literals that need type safety
 - Fix all linter errors (use `new Array()`, add `type="button"`, etc.)
+- **Add `"use client"` directive at the top of component files that use React hooks** (useState, useEffect, etc.)
 
 ### 2. CSS Modules Conversion Rules
 
@@ -123,6 +124,11 @@ export default function Component() {
 }
 
 // After (TypeScript + CSS Modules)
+("use client");
+
+import { useState } from "react";
+import styles from "./component.module.css";
+
 export function Component() {
   const [state, setState] = useState<StateType>("idle");
   return <div className={styles.wrapper}>...</div>;
