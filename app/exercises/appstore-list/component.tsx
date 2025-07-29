@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
+import styles from "./component.module.css";
 
 interface Game {
   title: string;
@@ -11,10 +12,12 @@ interface Game {
   image: string;
 }
 
-export default function SharedLayout() {
+export function AppstoreListComponent() {
   const [activeGame, setActiveGame] = useState<Game | null>(null);
   const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref, () => setActiveGame(null));
+  useOnClickOutside(ref as React.RefObject<HTMLElement>, () =>
+    setActiveGame(null)
+  );
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -31,10 +34,14 @@ export default function SharedLayout() {
     <>
       {activeGame ? (
         <>
-          <div className="overlay" />
-          <div className="active-game">
-            <div className="inner" ref={ref} style={{ borderRadius: 12 }}>
-              <div className="header">
+          <div className={styles.overlay} />
+          <div className={styles.activeGame}>
+            <div
+              className={styles.inner}
+              ref={ref}
+              style={{ borderRadius: 12 }}
+            >
+              <div className={styles.header}>
                 <Image
                   alt=""
                   height={56}
@@ -42,27 +49,36 @@ export default function SharedLayout() {
                   style={{ borderRadius: 12 }}
                   width={56}
                 />
-                <div className="header-inner">
-                  <div className="content-wrapper">
-                    <h2 className="game-title">{activeGame.title}</h2>
-                    <p className="game-description">{activeGame.description}</p>
+                <div className={styles.headerInner}>
+                  <div className={styles.contentWrapper}>
+                    <h2 className={styles.gameTitle}>{activeGame.title}</h2>
+                    <p className={styles.gameDescription}>
+                      {activeGame.description}
+                    </p>
                   </div>
-                  <button className="button" type="button">
+                  <button className={styles.button} type="button">
                     Get
                   </button>
                 </div>
               </div>
-              <p className="long-description">{activeGame.longDescription}</p>
+              <p className={styles.longDescription}>
+                {activeGame.longDescription}
+              </p>
             </div>
           </div>
         </>
       ) : null}
-      <ul className="list">
+      <ul className={styles.list}>
         {GAMES.map((game) => (
+          // biome-ignore lint/a11y/useSemanticElements: <Wants to change this to a button, but not possible>
           <li
             key={game.title}
             onClick={() => setActiveGame(game)}
+            onKeyDown={() => setActiveGame(game)}
+            // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: <Wants to change this to a button, but not possible>
+            role="button"
             style={{ borderRadius: 8 }}
+            tabIndex={0}
           >
             <Image
               alt=""
@@ -71,12 +87,12 @@ export default function SharedLayout() {
               style={{ borderRadius: 12 }}
               width={56}
             />
-            <div className="game-wrapper">
-              <div className="content-wrapper">
-                <h2 className="game-title">{game.title}</h2>
-                <p className="game-description">{game.description}</p>
+            <div className={styles.gameWrapper}>
+              <div className={styles.contentWrapper}>
+                <h2 className={styles.gameTitle}>{game.title}</h2>
+                <p className={styles.gameDescription}>{game.description}</p>
               </div>
-              <button className="button" type="button">
+              <button className={styles.button} type="button">
                 Get
               </button>
             </div>

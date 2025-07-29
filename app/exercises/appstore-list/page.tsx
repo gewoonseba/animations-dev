@@ -1,5 +1,5 @@
+import { AppstoreListComponent } from "@/app/exercises/appstore-list/component";
 import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { AppstoreListComponent } from "./component";
 
 export default function AppstoreListPage() {
   return (
