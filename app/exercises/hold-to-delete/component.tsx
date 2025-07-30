@@ -1,4 +1,4 @@
-import styles from "./component.module.css";
+import styles from './component.module.css';
 
 export function ClipPathButton() {
   return (

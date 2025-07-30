@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { CardHoverComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { CardHoverComponent } from './component';
 
 export default function CardHoverPage() {
   return (

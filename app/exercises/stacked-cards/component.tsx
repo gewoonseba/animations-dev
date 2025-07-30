@@ -9,6 +9,7 @@ export function StackedCardsComponent() {
       {new Array(LENGTH).fill(0).map((_, i) => (
         <div
           className={styles.card}
+          // biome-ignore lint/suspicious/noArrayIndexKey: <always fixed>
           key={i}
           style={{ '--index': LENGTH - 1 - i } as React.CSSProperties}
         />

@@ -34,6 +34,7 @@ export function ToastComponentComponent() {
     <div className={styles.wrapper}>
       <div className={styles.toaster}>
         {Array.from({ length: toasts }).map((_, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: <orde won't hange>
           <Toast index={toasts - i - 1} key={i} />
         ))}
       </div>
@@ -42,6 +43,7 @@ export function ToastComponentComponent() {
         onClick={() => {
           setToasts(toasts + 1);
         }}
+        type="button"
       >
         Add toast
       </button>

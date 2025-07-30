@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { TabsTransitionComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { TabsTransitionComponent } from './component';
 
 export default function TabsTransitionPage() {
   return (

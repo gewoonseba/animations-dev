@@ -1,5 +1,5 @@
-import { ExerciseLink } from "@/app/components/ExerciseLink";
-import { ExerciseSection } from "@/app/components/ExerciseSection";
+import { ExerciseLink } from '@/app/components/exercise-link';
+import { ExerciseSection } from '@/app/components/exercise-section';
 
 export default function Home() {
   return (

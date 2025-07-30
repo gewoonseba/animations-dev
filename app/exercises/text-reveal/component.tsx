@@ -14,6 +14,7 @@ export function TextReveal() {
         <h1 className={styles.h1}>
           {WORD.split('').map((char, index) => (
             <span
+              // biome-ignore lint/suspicious/noArrayIndexKey: <Not changing>
               key={index}
               style={{ '--index': index } as React.CSSProperties}
             >
@@ -23,7 +24,11 @@ export function TextReveal() {
         </h1>
       </div>
       {/* Use this button to replay your animation */}
-      <button className={styles.button} onClick={() => setReset(reset + 1)}>
+      <button
+        className={styles.button}
+        onClick={() => setReset(reset + 1)}
+        type="button"
+      >
         Replay animation
       </button>
     </div>

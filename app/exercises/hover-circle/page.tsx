@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { HoverCircleComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { HoverCircleComponent } from './component';
 
 export default function HoverCirclePage() {
   return (

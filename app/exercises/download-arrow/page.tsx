@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { DownloadArrowComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { DownloadArrowComponent } from './component';
 
 export default function DownloadArrowPage() {
   return (

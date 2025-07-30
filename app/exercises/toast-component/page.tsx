@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { ToastComponentComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { ToastComponentComponent } from './component';
 
 export default function ToastComponentPage() {
   return (

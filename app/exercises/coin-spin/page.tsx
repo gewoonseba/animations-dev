@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "@/app/components/ExerciseDetail";
-import { CoinSpinComponent } from "@/app/exercises/coin-spin/component";
+import { ExerciseDetail } from '@/app/components/exercise-detail';
+import { CoinSpinComponent } from '@/app/exercises/coin-spin/component';
 
 export default function CoinSpinPage() {
   return (

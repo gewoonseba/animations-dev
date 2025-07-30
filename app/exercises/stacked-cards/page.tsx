@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "@/app/components/ExerciseDetail";
-import { StackedCardsComponent } from "./component";
+import { ExerciseDetail } from '@/app/components/exercise-detail';
+import { StackedCardsComponent } from './component';
 
 export default function StackedCardsPage() {
   return (

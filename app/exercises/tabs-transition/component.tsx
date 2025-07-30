@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, useState } from "react";
-import styles from "./component.module.css";
+import { useEffect, useRef, useState } from 'react';
+import styles from './component.module.css';
 
 export function TabsTransitionComponent() {
   const [activeTab, setActiveTab] = useState(TABS[0].name);
@@ -76,7 +76,7 @@ export function TabsTransitionComponent() {
 
 const TABS = [
   {
-    name: "Payments",
+    name: 'Payments',
     icon: (
       <svg
         aria-hidden="true"
@@ -102,7 +102,7 @@ const TABS = [
     ),
   },
   {
-    name: "Balances",
+    name: 'Balances',
     icon: (
       <svg
         aria-hidden="true"
@@ -127,7 +127,7 @@ const TABS = [
     ),
   },
   {
-    name: "Customers",
+    name: 'Customers',
     icon: (
       <svg
         aria-hidden="true"
@@ -147,7 +147,7 @@ const TABS = [
     ),
   },
   {
-    name: "Billing",
+    name: 'Billing',
     icon: (
       <svg
         aria-hidden="true"

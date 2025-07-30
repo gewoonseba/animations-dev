@@ -1,4 +1,4 @@
-import React, { isValidElement } from "react";
+import React, { isValidElement } from 'react';
 
 interface ExerciseSectionProps {
   title: string;

@@ -1,14 +1,14 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: 'https',
         hostname:
-          "animations-on-the-web-git-how-i-use-3066e1-emilkowalski-s-team.vercel.app",
-        port: "",
-        pathname: "/**",
+          'animations-on-the-web-git-how-i-use-3066e1-emilkowalski-s-team.vercel.app',
+        port: '',
+        pathname: '/**',
       },
     ],
   },

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-import useMeasure from "react-use-measure";
-import styles from "./component.module.css";
+import { AnimatePresence, motion } from 'motion/react';
+import { useState } from 'react';
+import useMeasure from 'react-use-measure';
+import styles from './component.module.css';
 
 export function AnimatingHeightComponent() {
   const [showExtraContent, setShowExtraContent] = useState(false);

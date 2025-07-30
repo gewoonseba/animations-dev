@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
-import styles from "./component.module.css";
+import { AnimatePresence, motion } from 'motion/react';
+import { useState } from 'react';
+import styles from './component.module.css';
 
 const buttonCopy = {
-  idle: "Send me a login link",
+  idle: 'Send me a login link',
   loading: <Spinner color="rgba(255, 255, 255, 0.65)" size={16} />,
-  success: "Login link sent!",
+  success: 'Login link sent!',
 } as const;
 
 type ButtonState = keyof typeof buttonCopy;
 
 export function LoginButtonComponent() {
-  const [buttonState, setButtonState] = useState<ButtonState>("idle");
+  const [buttonState, setButtonState] = useState<ButtonState>('idle');
 
   return (
     <div className={styles.outerWrapper}>
       <button
         className={styles.blueButton}
-        disabled={buttonState !== "idle"}
+        disabled={buttonState !== 'idle'}
         onClick={() => {
           // This code is just a placeholder
-          setButtonState("loading");
+          setButtonState('loading');
 
           setTimeout(() => {
-            setButtonState("success");
+            setButtonState('success');
           }, 1750);
 
           setTimeout(() => {
-            setButtonState("idle");
+            setButtonState('idle');
           }, 3500);
         }}
         type="button"
@@ -40,7 +40,7 @@ export function LoginButtonComponent() {
             exit={{ y: 25, opacity: 0 }}
             initial={{ y: -25, opacity: 0 }}
             key={buttonState}
-            transition={{ type: "spring", bounce: 0, visualDuration: 0.3 }}
+            transition={{ type: 'spring', bounce: 0, visualDuration: 0.3 }}
           >
             {buttonCopy[buttonState]}
           </motion.span>
@@ -62,8 +62,8 @@ function Spinner({ color, size = 20 }: SpinnerProps) {
     <div
       className={styles.wrapper}
       style={{
-        ["--spinner-size" as string]: `${size}px`,
-        ["--spinner-color" as string]: color,
+        ['--spinner-size' as string]: `${size}px`,
+        ['--spinner-color' as string]: color,
       }}
     >
       <div className={styles.spinner}>

@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { AnimatingHeightComponent } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { AnimatingHeightComponent } from './component';
 
 export default function AnimatingHeightPage() {
   return (

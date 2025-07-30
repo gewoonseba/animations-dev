@@ -1,5 +1,5 @@
-import { ExerciseDetail } from "../../components/ExerciseDetail";
-import { TextReveal } from "./component";
+import { ExerciseDetail } from '../../components/exercise-detail';
+import { TextReveal } from './component';
 
 export default function TextRevealPage() {
   return (
