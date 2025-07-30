@@ -28,7 +28,7 @@ export function ExerciseDetail({
         View course material →
       </a>
 
-      <div className="relative mt-8 flex h-96 w-full items-center justify-center overflow-hidden rounded-lg border border-neutral-100 p-8">
+      <div className="relative mt-8 flex min-h-96 w-full items-center justify-center overflow-hidden rounded-lg border border-neutral-100 p-8">
         {children}
       </div>
     </>
