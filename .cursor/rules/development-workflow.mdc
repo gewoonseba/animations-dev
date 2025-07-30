@@ -21,6 +21,7 @@ See [Exercise Creation Workflow Rules](./exercise-creation.mdc) for detailed ins
 - Keep components focused and single-purpose
 - Use semantic HTML elements
 - Ensure animations are accessible (respect `prefers-reduced-motion`)
+- Always lint and format code you've created using `pnpm run lint` and `pnpm run format`
 
 ## File Naming Conventions
 

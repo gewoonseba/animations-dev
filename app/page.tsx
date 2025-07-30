@@ -1,14 +1,14 @@
-import { ExerciseLink } from '@/app/components/ExerciseLink';
-import { ExerciseSection } from '@/app/components/ExerciseSection';
+import { ExerciseLink } from "@/app/components/ExerciseLink";
+import { ExerciseSection } from "@/app/components/ExerciseSection";
 
 export default function Home() {
   return (
     <div className="relative">
       {/* Top fade overlay */}
-      <div className="fixed top-0 left-0 right-0 h-20 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none fixed top-0 right-0 left-0 z-10 h-20 bg-gradient-to-b from-white to-transparent" />
 
       {/* Bottom fade overlay */}
-      <div className="fixed bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none z-10" />
+      <div className="pointer-events-none fixed right-0 bottom-0 left-0 z-10 h-20 bg-gradient-to-t from-white to-transparent" />
 
       {/* Main content */}
       <div>
