@@ -4,7 +4,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import { createOptimizedImageUrl } from '../../../components/OptimizedMotionImg';
 import styles from './component.module.css';
 
 interface CardData {
@@ -38,7 +37,7 @@ function Card({ card, setActiveCard }: CardProps) {
       <motion.img
         alt=""
         layoutId={`image-${card.title}`}
-        src={createOptimizedImageUrl(card.image, 800, 75)}
+        src={card.image}
         style={{ borderRadius: 20 }}
       />
       <motion.button
@@ -88,7 +87,7 @@ function Card({ card, setActiveCard }: CardProps) {
             className={styles.roundedLg}
             height={40}
             layoutId={`card-game-image-${card.title}`}
-            src={createOptimizedImageUrl(card.logo, 80, 75)}
+            src={card.logo}
             width={40}
           />
           <div className={styles.descWrapper}>
@@ -153,7 +152,7 @@ function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
         <motion.img
           alt=""
           layoutId={`image-${activeCard.title}`}
-          src={createOptimizedImageUrl(activeCard.image, 800, 75)}
+          src={activeCard.image}
           style={{ borderRadius: 0 }}
         />
         <motion.button
@@ -203,7 +202,7 @@ function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
               className={styles.roundedLg}
               height={40}
               layoutId={`card-game-image-${activeCard.title}`}
-              src={createOptimizedImageUrl(activeCard.logo, 80, 75)}
+              src={activeCard.logo}
               width={40}
             />
             <div className={styles.descWrapper}>
