@@ -26,6 +26,7 @@ See [Exercise Creation Workflow Rules](./exercise-creation.mdc) for detailed ins
 ## File Naming Conventions
 
 - Use kebab-case for directory names: `card-hover`, `text-reveal`
+- Use kabab-case for file names: `exercise-link.tsx`
 - Use PascalCase for component names: `CardHoverComponent`
 - Use camelCase for CSS class names in modules
 - Use descriptive names that explain the animation behavior

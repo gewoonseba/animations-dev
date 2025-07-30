@@ -1,4 +1,4 @@
-import { ExerciseDetail } from '../../components/exercise-detail';
+import { ExerciseDetail } from '../../../components/exercise-detail';
 import { CardHoverComponent } from './component';
 
 export default function CardHoverPage() {

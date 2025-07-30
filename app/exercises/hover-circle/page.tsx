@@ -1,4 +1,4 @@
-import { ExerciseDetail } from '../../components/exercise-detail';
+import { ExerciseDetail } from '../../../components/exercise-detail';
 import { HoverCircleComponent } from './component';
 
 export default function HoverCirclePage() {

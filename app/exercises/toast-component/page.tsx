@@ -1,4 +1,4 @@
-import { ExerciseDetail } from '../../components/exercise-detail';
+import { ExerciseDetail } from '../../../components/exercise-detail';
 import { ToastComponentComponent } from './component';
 
 export default function ToastComponentPage() {

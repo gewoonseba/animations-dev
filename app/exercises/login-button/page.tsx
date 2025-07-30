@@ -1,4 +1,4 @@
-import { ExerciseDetail } from '../../components/exercise-detail';
+import { ExerciseDetail } from '../../../components/exercise-detail';
 import { LoginButtonComponent } from './component';
 
 export default function LoginButtonPage() {

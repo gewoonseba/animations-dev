@@ -1,8 +1,10 @@
+/** biome-ignore-all lint/performance/noImgElement: <just for the exercise> */
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { createOptimizedImageUrl } from '../../../components/OptimizedMotionImg';
 import styles from './component.module.css';
 
 interface CardData {
@@ -36,7 +38,7 @@ function Card({ card, setActiveCard }: CardProps) {
       <motion.img
         alt=""
         layoutId={`image-${card.title}`}
-        src={card.image}
+        src={createOptimizedImageUrl(card.image, 800, 75)}
         style={{ borderRadius: 20 }}
       />
       <motion.button
@@ -86,7 +88,7 @@ function Card({ card, setActiveCard }: CardProps) {
             className={styles.roundedLg}
             height={40}
             layoutId={`card-game-image-${card.title}`}
-            src={card.logo}
+            src={createOptimizedImageUrl(card.logo, 80, 75)}
             width={40}
           />
           <div className={styles.descWrapper}>
@@ -151,7 +153,7 @@ function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
         <motion.img
           alt=""
           layoutId={`image-${activeCard.title}`}
-          src={activeCard.image}
+          src={createOptimizedImageUrl(activeCard.image, 800, 75)}
           style={{ borderRadius: 0 }}
         />
         <motion.button
@@ -201,7 +203,7 @@ function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
               className={styles.roundedLg}
               height={40}
               layoutId={`card-game-image-${activeCard.title}`}
-              src={activeCard.logo}
+              src={createOptimizedImageUrl(activeCard.logo, 80, 75)}
               width={40}
             />
             <div className={styles.descWrapper}>

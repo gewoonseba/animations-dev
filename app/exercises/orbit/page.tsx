@@ -1,5 +1,5 @@
-import { ExerciseDetail } from '@/app/components/exercise-detail';
 import { Orbit } from '@/app/exercises/orbit/component';
+import { ExerciseDetail } from '@/components/exercise-detail';
 
 export default function OrbitPage() {
   return (

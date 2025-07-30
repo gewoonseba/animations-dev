@@ -1,4 +1,4 @@
-import { ExerciseDetail } from '../../components/exercise-detail';
+import { ExerciseDetail } from '../../../components/exercise-detail';
 import { DownloadArrowComponent } from './component';
 
 export default function DownloadArrowPage() {

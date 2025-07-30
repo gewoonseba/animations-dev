@@ -22,8 +22,9 @@ Each exercise follows this pattern:
 
 ## Shared Components
 
-- [app/components/ExerciseDetail.tsx](mdc:app/components/ExerciseDetail.tsx) - Wrapper for displaying exercises
-- [app/components/ExerciseLink.tsx](mdc:app/components/ExerciseLink.tsx) - Navigation links between exercises
+- [components/exercise-detail.tsx](mdc:components/ExerciseDetail.tsx) - Wrapper for displaying exercises
+- [components/exercise-link.tsx](mdc:components/ExerciseLink.tsx) - Navigation links between exercises
+- [components/exercise-section.tsx](mdc:components/exercise-section.tsx) - Wrapper for showing different links inside a section
 
 ## Configuration
 
