@@ -88,6 +88,11 @@ export default function Home() {
             key="appstore-list"
             title="App Store List"
           />
+          <ExerciseLink
+            href="/exercises/appstore-card"
+            key="appstore-card"
+            title="App Store Card"
+          />
         </ExerciseSection>
       </div>
     </div>
