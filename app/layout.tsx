@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { ScrollReset } from '@/components/scroll-reset';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} max-w-screen-lg px-4 py-20 font-inter font-medium md:p-20`}
       >
+        <ScrollReset />
         {children}
       </body>
     </html>
