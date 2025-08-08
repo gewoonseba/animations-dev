@@ -13,9 +13,9 @@ export function ExerciseDetail({
 }: ExerciseDetailProps) {
   return (
     <>
-      <h2 className="mt-8 mb-2 font-semibold text-neutral-900 text-sm">
+      <h1 className="mb-2 font-semibold text-neutral-900 text-sm">
         {title}
-      </h2>
+      </h1>
 
       <p className="mb-4 text-neutral-600 text-sm">{description}</p>
 

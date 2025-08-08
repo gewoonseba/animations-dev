@@ -7,7 +7,6 @@ interface ExerciseLayoutProps {
 export default function ExerciseLayout({ children }: ExerciseLayoutProps) {
   return (
     <div className="mx-auto max-w-3xl p-8">
-      <h1 className="sr-only">Exercises</h1>
       <Link
         className="text-neutral-500 text-sm no-underline hover:text-neutral-800"
         href="/"
