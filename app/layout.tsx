@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} max-w-screen-lg px-4 py-20 font-inter font-medium md:p-20`}
+        className={`${inter.variable} mx-auto max-w-3xl p-8 py-20 font-inter font-medium md:p-20`}
       >
         {children}
       </body>
