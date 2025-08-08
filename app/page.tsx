@@ -93,6 +93,11 @@ export default function Home() {
             key="appstore-card"
             title="App Store Card"
           />
+          <ExerciseLink
+            href="/exercises/feedback-component"
+            key="feedback-component"
+            title="Feedback Component"
+          />
         </ExerciseSection>
       </div>
     </div>
