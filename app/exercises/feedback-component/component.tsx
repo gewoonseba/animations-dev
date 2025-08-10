@@ -47,8 +47,8 @@ export function FeedbackComponent() {
   }, [open, formState, submit]);
 
   return (
-    <motion.div className={styles.feedbackWrapper} layout>
-      <AnimatePresence mode="popLayout">
+    <div className={styles.feedbackWrapper}>
+      <AnimatePresence>
         {open ? (
           <motion.div
             className={styles.feedbackPopover}
@@ -234,6 +234,6 @@ export function FeedbackComponent() {
           </motion.button>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
