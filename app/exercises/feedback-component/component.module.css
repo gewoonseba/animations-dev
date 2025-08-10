@@ -48,6 +48,10 @@
   top: 17px;
 }
 
+.placeholder[data-feedback="true"] {
+  visibility: hidden;
+}
+
 .successWrapper {
   display: flex;
   height: 100%;
