@@ -57,6 +57,11 @@ export function FeedbackComponent() {
           setFeedback('');
         }}
         style={{ borderRadius: 8 }}
+        transition={{
+          type: 'spring',
+          duration: 0.7,
+          bounce: 0,
+        }}
         type="button"
       >
         <motion.span layoutId="feedback-label">Feedback</motion.span>
@@ -68,6 +73,11 @@ export function FeedbackComponent() {
             layoutId="feedback-popover"
             ref={ref}
             style={{ borderRadius: 12 }}
+            transition={{
+              type: 'spring',
+              duration: 0.7,
+              bounce: 0,
+            }}
           >
             <motion.span
               aria-hidden
@@ -125,11 +135,28 @@ export function FeedbackComponent() {
                 />
                 <div className={styles.feedbackFooter}>
                   <button className={styles.submitButton} type="submit">
-                    {formState === 'loading' ? (
-                      <Spinner color="rgba(255, 255, 255, 0.65)" size={14} />
-                    ) : (
-                      <span>Send feedback</span>
-                    )}
+                    <AnimatePresence initial={false} mode="popLayout">
+                      <motion.span
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 25 }}
+                        initial={{ opacity: 0, y: -25 }}
+                        key={formState}
+                        transition={{
+                          type: 'spring',
+                          duration: 0.3,
+                          bounce: 0,
+                        }}
+                      >
+                        {formState === 'loading' ? (
+                          <Spinner
+                            color="rgba(255, 255, 255, 0.65)"
+                            size={14}
+                          />
+                        ) : (
+                          <span>Send feedback</span>
+                        )}
+                      </motion.span>
+                    </AnimatePresence>
                   </button>
                 </div>
               </form>
