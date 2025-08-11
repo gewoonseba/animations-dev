@@ -46,6 +46,7 @@
   color: #63635d;
   left: 16px;
   top: 17px;
+  z-index: 1;
 }
 
 .placeholder[data-feedback="true"] {
