@@ -142,7 +142,7 @@ export function FeedbackComponent() {
   );
 }
 
-export function Divider() {
+function Divider() {
   return (
     <>
       <svg
