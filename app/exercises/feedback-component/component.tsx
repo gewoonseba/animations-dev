@@ -48,6 +48,19 @@ export function FeedbackComponent() {
 
   return (
     <div className={styles.feedbackWrapper}>
+      <motion.button
+        className={styles.feedbackButton}
+        layoutId="feedback-popover"
+        onClick={() => {
+          setOpen(true);
+          setFormState('idle');
+          setFeedback('');
+        }}
+        style={{ borderRadius: 8 }}
+        type="button"
+      >
+        <motion.span layoutId="feedback-label">Feedback</motion.span>
+      </motion.button>
       <AnimatePresence>
         {open ? (
           <motion.div
@@ -122,21 +135,7 @@ export function FeedbackComponent() {
               </form>
             )}
           </motion.div>
-        ) : (
-          <motion.button
-            className={styles.feedbackButton}
-            layoutId="feedback-popover"
-            onClick={() => {
-              setOpen(true);
-              setFormState('idle');
-              setFeedback('');
-            }}
-            style={{ borderRadius: 8 }}
-            type="button"
-          >
-            <motion.span layoutId="feedback-label">Feedback</motion.span>
-          </motion.button>
-        )}
+        ) : null}
       </AnimatePresence>
     </div>
   );
