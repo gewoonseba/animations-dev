@@ -120,7 +120,6 @@ export function FeedbackComponent() {
                 </motion.div>
               ) : (
                 <motion.form
-                  animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
                   className={styles.feedbackForm}
                   exit={{ y: 32, opacity: 0, filter: 'blur(4px)' }}
                   key="form"
