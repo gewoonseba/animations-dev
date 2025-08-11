@@ -8,6 +8,12 @@ import { Spinner } from './spinner';
 
 type FormState = 'idle' | 'loading' | 'success';
 
+const popOverTransition = {
+  type: 'spring',
+  duration: 0.6,
+  bounce: 0,
+} as const;
+
 export function FeedbackComponent() {
   const [open, setOpen] = useState<boolean>(false);
   const [formState, setFormState] = useState<FormState>('idle');
@@ -57,11 +63,7 @@ export function FeedbackComponent() {
           setFeedback('');
         }}
         style={{ borderRadius: 8 }}
-        transition={{
-          type: 'spring',
-          duration: 0.7,
-          bounce: 0,
-        }}
+        transition={popOverTransition}
         type="button"
       >
         <motion.span layoutId="feedback-label">Feedback</motion.span>
@@ -73,11 +75,7 @@ export function FeedbackComponent() {
             layoutId="feedback-popover"
             ref={ref}
             style={{ borderRadius: 12 }}
-            transition={{
-              type: 'spring',
-              duration: 0.7,
-              bounce: 0,
-            }}
+            transition={popOverTransition}
           >
             <motion.span
               aria-hidden
@@ -125,7 +123,6 @@ export function FeedbackComponent() {
                   submit();
                 }}
               >
-                <Divider />
                 <textarea
                   autoFocus
                   className={styles.textarea}
@@ -134,6 +131,7 @@ export function FeedbackComponent() {
                   required
                 />
                 <div className={styles.feedbackFooter}>
+                  <Divider />
                   <button className={styles.submitButton} type="submit">
                     <AnimatePresence initial={false} mode="popLayout">
                       <motion.span
@@ -168,7 +166,7 @@ export function FeedbackComponent() {
   );
 }
 
-function Divider() {
+export function Divider() {
   return (
     <>
       <svg
