@@ -25,7 +25,7 @@ export function FeedbackComponent() {
     setFormState('loading');
     setTimeout(() => {
       setFormState('success');
-    }, 800);
+    }, 1500);
 
     setTimeout(() => {
       setOpen(false);
@@ -89,10 +89,10 @@ export function FeedbackComponent() {
               <motion.div
                 animate={{ y: 0, filter: 'blur(0px)' }}
                 className={styles.successWrapper}
-                initial={{ y: -10, filter: 'blur(4px)' }}
+                initial={{ y: -15, filter: 'blur(12px)' }}
                 transition={{
                   type: 'spring',
-                  duration: 0.4,
+                  duration: 0.6,
                   bounce: 0,
                 }}
               >
