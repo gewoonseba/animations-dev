@@ -25,7 +25,7 @@ export function FeedbackComponent() {
     setFormState('loading');
     setTimeout(() => {
       setFormState('success');
-    }, 1500);
+    }, 800);
 
     setTimeout(() => {
       setOpen(false);
@@ -85,9 +85,17 @@ export function FeedbackComponent() {
             >
               Feedback
             </motion.span>
-
             {formState === 'success' ? (
-              <div className={styles.successWrapper}>
+              <motion.div
+                animate={{ y: 0, filter: 'blur(0px)' }}
+                className={styles.successWrapper}
+                initial={{ y: -10, filter: 'blur(4px)' }}
+                transition={{
+                  type: 'spring',
+                  duration: 0.4,
+                  bounce: 0,
+                }}
+              >
                 <svg
                   fill="none"
                   height="32"
@@ -111,7 +119,7 @@ export function FeedbackComponent() {
                 </svg>
                 <h3>Feedback received!</h3>
                 <p>Thanks for helping me improve Sonner.</p>
-              </div>
+              </motion.div>
             ) : (
               <form
                 className={styles.feedbackForm}
