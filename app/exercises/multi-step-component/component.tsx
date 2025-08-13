@@ -1,12 +1,14 @@
 'use client';
 
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import useMeasure from 'react-use-measure';
 import { Pane } from 'tweakpane';
 import styles from './component.module.css';
 
 export function MultiStepComponent() {
   const [currentStep, setCurrentStep] = useState<number>(0);
+  const [ref, bounds] = useMeasure();
 
   // Parameters controlled via Tweakpane. Stored in refs to avoid re-renders.
   const paneRef = useRef<Pane | null>(null);
@@ -144,62 +146,68 @@ export function MultiStepComponent() {
   }, [currentStep]);
 
   return (
-    <div className={styles.multiStepWrapper}>
-      <div className={styles.multiStepInner}>
-        <AnimatePresence initial={false} mode="popLayout">
-          <motion.div
-            animate={{
-              x: 0,
-              opacity: paramsRef.current.animateOpacity ? 1 : undefined,
-            }}
-            exit={{
-              x: '-110%',
-              opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-            }}
-            initial={{
-              x: '110%',
-              opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-            }}
-            key={currentStep}
-            transition={{
-              duration: paramsRef.current.duration,
-              type: 'spring',
-              bounce: paramsRef.current.bounce,
-            }}
-          >
-            {content}
+    <MotionConfig
+      transition={{
+        duration: paramsRef.current.duration,
+        type: 'spring',
+        bounce: paramsRef.current.bounce,
+      }}
+    >
+      <motion.div
+        animate={{ height: bounds.height }}
+        className={styles.multiStepWrapper}
+      >
+        <div className={styles.multiStepInner} ref={ref}>
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.div
+              animate={{
+                x: 0,
+                opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+              }}
+              exit={{
+                x: '-110%',
+                opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+              }}
+              initial={{
+                x: '110%',
+                opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+              }}
+              key={currentStep}
+            >
+              {content}
+            </motion.div>
+          </AnimatePresence>
+          <motion.div className={styles.actions} layout>
+            <button
+              className={styles.secondaryButton}
+              disabled={currentStep === 0}
+              onClick={() => {
+                if (currentStep === 0) {
+                  return;
+                }
+                setCurrentStep((prev) => prev - 1);
+              }}
+              type="button"
+            >
+              Back
+            </button>
+            <button
+              className={styles.primaryButton}
+              disabled={currentStep === 2}
+              onClick={() => {
+                if (currentStep === 2) {
+                  setCurrentStep(0);
+                  return;
+                }
+                setCurrentStep((prev) => prev + 1);
+              }}
+              type="button"
+            >
+              Continue
+            </button>
           </motion.div>
-        </AnimatePresence>
-        <div className={styles.actions}>
-          <button
-            className={styles.secondaryButton}
-            disabled={currentStep === 0}
-            onClick={() => {
-              if (currentStep === 0) {
-                return;
-              }
-              setCurrentStep((prev) => prev - 1);
-            }}
-            type="button"
-          >
-            Back
-          </button>
-          <button
-            className={styles.primaryButton}
-            disabled={currentStep === 2}
-            onClick={() => {
-              if (currentStep === 2) {
-                setCurrentStep(0);
-                return;
-              }
-              setCurrentStep((prev) => prev + 1);
-            }}
-            type="button"
-          >
-            Continue
-          </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </MotionConfig>
   );
 }
