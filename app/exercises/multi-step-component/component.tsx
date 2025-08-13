@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 import styles from './component.module.css';
 
@@ -64,7 +65,22 @@ export function MultiStepComponent(): JSX.Element {
   return (
     <div className={styles.multiStepWrapper}>
       <div className={styles.multiStepInner}>
-        <div>{content}</div>
+        <motion.div
+          animate={{
+            x: 0,
+          }}
+          initial={{
+            x: 150,
+          }}
+          key={currentStep}
+          transition={{
+            duration: 0.5,
+            type: 'spring',
+            bounce: 0,
+          }}
+        >
+          {content}
+        </motion.div>
         <div className={styles.actions}>
           <button
             className={styles.secondaryButton}
