@@ -1,11 +1,91 @@
 'use client';
 
 import { motion } from 'motion/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Pane } from 'tweakpane';
 import styles from './component.module.css';
 
 export function MultiStepComponent() {
   const [currentStep, setCurrentStep] = useState<number>(0);
+
+  // Parameters controlled via Tweakpane. Stored in refs to avoid re-renders.
+  const paneRef = useRef<Pane | null>(null);
+  const paneContainerRef = useRef<HTMLDivElement | null>(null);
+  const paramsRef = useRef<{
+    initialX: number;
+    duration: number;
+    bounce: number;
+  }>({
+    initialX: 300,
+    duration: 0.7,
+    bounce: 0,
+  });
+
+  useEffect(() => {
+    // Create a fixed container in the top-right corner of the page so the pane is always visible
+    const container = document.createElement('div');
+    container.style.position = 'fixed';
+    container.style.top = '16px';
+    container.style.right = '16px';
+    container.style.zIndex = '9999';
+    container.style.pointerEvents = 'auto';
+    document.body.appendChild(container);
+    paneContainerRef.current = container;
+
+    const pane = new Pane({ container, title: 'Animation Controls' });
+    paneRef.current = pane;
+
+    // Local mirror object for Tweakpane bindings
+    const bindings = {
+      x: paramsRef.current.initialX,
+      duration: paramsRef.current.duration,
+      bounce: paramsRef.current.bounce,
+    };
+
+    const xBinding = pane.addBinding(bindings, 'x', {
+      label: 'initial x',
+      min: -500,
+      max: 500,
+      step: 1,
+    });
+    xBinding.on('change', (ev: { value: number; last?: boolean }) => {
+      paramsRef.current.initialX = Number(ev.value);
+    });
+
+    const durationBinding = pane.addBinding(bindings, 'duration', {
+      label: 'duration (s)',
+      min: 0,
+      max: 3,
+      step: 0.01,
+      format: (v: number) => v.toFixed(2),
+    });
+    durationBinding.on('change', (ev: { value: number; last?: boolean }) => {
+      paramsRef.current.duration = Number(ev.value);
+    });
+
+    const bounceBinding = pane.addBinding(bindings, 'bounce', {
+      label: 'bounce',
+      min: 0,
+      max: 1,
+      step: 0.01,
+      format: (v: number) => v.toFixed(2),
+    });
+    bounceBinding.on('change', (ev: { value: number; last?: boolean }) => {
+      paramsRef.current.bounce = Number(ev.value);
+    });
+
+    return () => {
+      try {
+        paneRef.current?.dispose();
+      } finally {
+        paneRef.current = null;
+        paneContainerRef.current?.parentNode?.removeChild(
+          paneContainerRef.current
+        );
+        paneContainerRef.current = null;
+      }
+    };
+  }, []);
 
   const content = useMemo(() => {
     switch (currentStep) {
@@ -70,13 +150,13 @@ export function MultiStepComponent() {
             x: 0,
           }}
           initial={{
-            x: 150,
+            x: paramsRef.current.initialX,
           }}
           key={currentStep}
           transition={{
-            duration: 0.5,
+            duration: paramsRef.current.duration,
             type: 'spring',
-            bounce: 0,
+            bounce: paramsRef.current.bounce,
           }}
         >
           {content}
