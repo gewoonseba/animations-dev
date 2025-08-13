@@ -12,12 +12,10 @@ export function MultiStepComponent() {
   const paneRef = useRef<Pane | null>(null);
   const paneContainerRef = useRef<HTMLDivElement | null>(null);
   const paramsRef = useRef<{
-    initialX: number;
     duration: number;
     bounce: number;
     animateOpacity: boolean;
   }>({
-    initialX: 500,
     duration: 0.7,
     bounce: 0,
     animateOpacity: true,
@@ -39,21 +37,10 @@ export function MultiStepComponent() {
 
     // Local mirror object for Tweakpane bindings
     const bindings = {
-      x: paramsRef.current.initialX,
       duration: paramsRef.current.duration,
       bounce: paramsRef.current.bounce,
       animateOpacity: paramsRef.current.animateOpacity,
     };
-
-    const xBinding = pane.addBinding(bindings, 'x', {
-      label: 'initial x',
-      min: -500,
-      max: 500,
-      step: 1,
-    });
-    xBinding.on('change', (ev: { value: number; last?: boolean }) => {
-      paramsRef.current.initialX = Number(ev.value);
-    });
 
     const durationBinding = pane.addBinding(bindings, 'duration', {
       label: 'duration (s)',
@@ -166,12 +153,12 @@ export function MultiStepComponent() {
               opacity: paramsRef.current.animateOpacity ? 1 : undefined,
             }}
             exit={{
-              x: paramsRef.current.initialX * -1,
+              x: '-110%',
               opacity: paramsRef.current.animateOpacity ? 0 : undefined,
             }}
             initial={{
-              x: paramsRef.current.initialX,
-              opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+              x: '110%',
+              opacity: paramsRef.current.animateOpacity ? 0 : undefined,
             }}
             key={currentStep}
             transition={{
