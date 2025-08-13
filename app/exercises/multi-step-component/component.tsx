@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Pane } from 'tweakpane';
 import styles from './component.module.css';
@@ -15,10 +15,12 @@ export function MultiStepComponent() {
     initialX: number;
     duration: number;
     bounce: number;
+    animateOpacity: boolean;
   }>({
-    initialX: 300,
+    initialX: 500,
     duration: 0.7,
     bounce: 0,
+    animateOpacity: true,
   });
 
   useEffect(() => {
@@ -40,6 +42,7 @@ export function MultiStepComponent() {
       x: paramsRef.current.initialX,
       duration: paramsRef.current.duration,
       bounce: paramsRef.current.bounce,
+      animateOpacity: paramsRef.current.animateOpacity,
     };
 
     const xBinding = pane.addBinding(bindings, 'x', {
@@ -73,6 +76,17 @@ export function MultiStepComponent() {
     bounceBinding.on('change', (ev: { value: number; last?: boolean }) => {
       paramsRef.current.bounce = Number(ev.value);
     });
+
+    const animateOpacityBinding = pane.addBinding(bindings, 'animateOpacity', {
+      label: 'animate opacity',
+      type: 'boolean',
+    });
+    animateOpacityBinding.on(
+      'change',
+      (ev: { value: boolean; last?: boolean }) => {
+        paramsRef.current.animateOpacity = Boolean(ev.value);
+      }
+    );
 
     return () => {
       try {
@@ -145,22 +159,30 @@ export function MultiStepComponent() {
   return (
     <div className={styles.multiStepWrapper}>
       <div className={styles.multiStepInner}>
-        <motion.div
-          animate={{
-            x: 0,
-          }}
-          initial={{
-            x: paramsRef.current.initialX,
-          }}
-          key={currentStep}
-          transition={{
-            duration: paramsRef.current.duration,
-            type: 'spring',
-            bounce: paramsRef.current.bounce,
-          }}
-        >
-          {content}
-        </motion.div>
+        <AnimatePresence initial={false} mode="popLayout">
+          <motion.div
+            animate={{
+              x: 0,
+              opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+            }}
+            exit={{
+              x: paramsRef.current.initialX * -1,
+              opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+            }}
+            initial={{
+              x: paramsRef.current.initialX,
+              opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+            }}
+            key={currentStep}
+            transition={{
+              duration: paramsRef.current.duration,
+              type: 'spring',
+              bounce: paramsRef.current.bounce,
+            }}
+          >
+            {content}
+          </motion.div>
+        </AnimatePresence>
         <div className={styles.actions}>
           <button
             className={styles.secondaryButton}
