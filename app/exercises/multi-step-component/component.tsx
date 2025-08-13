@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { useMemo, useState } from 'react';
 import styles from './component.module.css';
 
-export function MultiStepComponent(): JSX.Element {
+export function MultiStepComponent() {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   const content = useMemo(() => {
