@@ -90,6 +90,21 @@ export function MultiStepComponent() {
     };
   }, []);
 
+  const variants = {
+    target: {
+      x: 0,
+      opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+    },
+    exit: {
+      x: '-110%',
+      opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+    },
+    initial: {
+      x: '110%',
+      opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+    },
+  };
+
   const content = useMemo(() => {
     switch (currentStep) {
       case 0:
@@ -160,19 +175,11 @@ export function MultiStepComponent() {
         <div className={styles.multiStepInner} ref={ref}>
           <AnimatePresence initial={false} mode="popLayout">
             <motion.div
-              animate={{
-                x: 0,
-                opacity: paramsRef.current.animateOpacity ? 1 : undefined,
-              }}
-              exit={{
-                x: '-110%',
-                opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-              }}
-              initial={{
-                x: '110%',
-                opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-              }}
+              animate="target"
+              exit="exit"
+              initial="initial"
               key={currentStep}
+              variants={variants}
             >
               {content}
             </motion.div>
