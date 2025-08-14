@@ -6,9 +6,12 @@ import useMeasure from 'react-use-measure';
 import { Pane } from 'tweakpane';
 import styles from './component.module.css';
 
+type Direction = 'forward' | 'backward';
+
 export function MultiStepComponent() {
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [ref, bounds] = useMeasure();
+  const directionRef = useRef<Direction>('forward');
 
   // Parameters controlled via Tweakpane. Stored in refs to avoid re-renders.
   const paneRef = useRef<Pane | null>(null);
@@ -95,14 +98,14 @@ export function MultiStepComponent() {
       x: 0,
       opacity: paramsRef.current.animateOpacity ? 1 : undefined,
     },
-    exit: {
-      x: '-110%',
+    exit: (direction: Direction) => ({
+      x: direction === 'forward' ? '-110%' : '110%',
       opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-    },
-    initial: {
-      x: '110%',
+    }),
+    initial: (direction: Direction) => ({
+      x: direction === 'forward' ? '110%' : '-110%',
       opacity: paramsRef.current.animateOpacity ? 0 : undefined,
-    },
+    }),
   };
 
   const content = useMemo(() => {
@@ -173,9 +176,14 @@ export function MultiStepComponent() {
         className={styles.multiStepWrapper}
       >
         <div className={styles.multiStepInner} ref={ref}>
-          <AnimatePresence initial={false} mode="popLayout">
+          <AnimatePresence
+            custom={directionRef.current}
+            initial={false}
+            mode="popLayout"
+          >
             <motion.div
               animate="target"
+              custom={directionRef.current}
               exit="exit"
               initial="initial"
               key={currentStep}
@@ -192,6 +200,7 @@ export function MultiStepComponent() {
                 if (currentStep === 0) {
                   return;
                 }
+                directionRef.current = 'backward';
                 setCurrentStep((prev) => prev - 1);
               }}
               type="button"
@@ -203,9 +212,11 @@ export function MultiStepComponent() {
               disabled={currentStep === 2}
               onClick={() => {
                 if (currentStep === 2) {
+                  directionRef.current = 'forward';
                   setCurrentStep(0);
                   return;
                 }
+                directionRef.current = 'forward';
                 setCurrentStep((prev) => prev + 1);
               }}
               type="button"
