@@ -211,11 +211,6 @@ export function MultiStepComponent() {
               className={styles.primaryButton}
               disabled={currentStep === 2}
               onClick={() => {
-                if (currentStep === 2) {
-                  directionRef.current = 'forward';
-                  setCurrentStep(0);
-                  return;
-                }
                 directionRef.current = 'forward';
                 setCurrentStep((prev) => prev + 1);
               }}
