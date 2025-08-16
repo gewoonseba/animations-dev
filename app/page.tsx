@@ -98,6 +98,11 @@ export default function Home() {
             key="feedback-component"
             title="Feedback Component"
           />
+          <ExerciseLink
+            href="/exercises/multi-step-component"
+            key="multi-step-component"
+            title="Multi-step Component"
+          />
         </ExerciseSection>
       </div>
     </div>
