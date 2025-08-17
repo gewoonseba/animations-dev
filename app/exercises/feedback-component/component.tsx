@@ -3,16 +3,12 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { useTweakpane } from '../../../components/use-tweakpane';
 import styles from './component.module.css';
 import { Spinner } from './spinner';
 
 type FormState = 'idle' | 'loading' | 'success';
 
-const popOverTransition = {
-  type: 'spring',
-  duration: 0.6,
-  bounce: 0,
-} as const;
 
 export function FeedbackComponent() {
   const [open, setOpen] = useState<boolean>(false);
@@ -21,16 +17,80 @@ export function FeedbackComponent() {
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref as React.RefObject<HTMLElement>, () => setOpen(false));
 
+  // Tweakpane controls for feedback popover animations
+  const animationParams = useTweakpane(
+    {
+      popoverDuration: 0.6,
+      popoverBounce: 0,
+      buttonTransitionDuration: 0.3,
+      buttonTransitionBounce: 0,
+      loadingDuration: 1500,
+      successDelay: 1800,
+    },
+    {
+      title: 'Feedback Animation',
+      position: { bottom: '16px', right: '16px' },
+      controls: [
+        {
+          key: 'popoverDuration',
+          label: 'popover duration (s)',
+          min: 0.2,
+          max: 2,
+          step: 0.1,
+          format: (v: number) => v.toFixed(1),
+        },
+        {
+          key: 'popoverBounce',
+          label: 'popover bounce',
+          min: 0,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'buttonTransitionDuration',
+          label: 'button transition (s)',
+          min: 0.1,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'buttonTransitionBounce',
+          label: 'button bounce',
+          min: 0,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'loadingDuration',
+          label: 'loading duration (ms)',
+          min: 500,
+          max: 5000,
+          step: 250,
+        },
+        {
+          key: 'successDelay',
+          label: 'success delay (ms)',
+          min: 500,
+          max: 5000,
+          step: 250,
+        },
+      ],
+    }
+  );
+
   const submit = useCallback(() => {
     setFormState('loading');
     setTimeout(() => {
       setFormState('success');
-    }, 1500);
+    }, animationParams.loadingDuration);
 
     setTimeout(() => {
       setOpen(false);
-    }, 3300);
-  }, []);
+    }, animationParams.loadingDuration + animationParams.successDelay);
+  }, [animationParams.loadingDuration, animationParams.successDelay]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -63,7 +123,11 @@ export function FeedbackComponent() {
           setFeedback('');
         }}
         style={{ borderRadius: 8 }}
-        transition={popOverTransition}
+        transition={{
+          type: 'spring',
+          duration: animationParams.popoverDuration,
+          bounce: animationParams.popoverBounce,
+        }}
         type="button"
       >
         <motion.span layoutId="feedback-label">Feedback</motion.span>
@@ -75,7 +139,11 @@ export function FeedbackComponent() {
             layoutId="feedback-popover"
             ref={ref}
             style={{ borderRadius: 12 }}
-            transition={popOverTransition}
+            transition={{
+          type: 'spring',
+          duration: animationParams.popoverDuration,
+          bounce: animationParams.popoverBounce,
+        }}
           >
             <motion.span
               aria-hidden
@@ -92,7 +160,11 @@ export function FeedbackComponent() {
                   className={styles.successWrapper}
                   initial={{ y: -32, filter: 'blur(4px)' }}
                   key="success"
-                  transition={popOverTransition}
+                  transition={{
+          type: 'spring',
+          duration: animationParams.popoverDuration,
+          bounce: animationParams.popoverBounce,
+        }}
                 >
                   <svg
                     fill="none"
@@ -130,7 +202,11 @@ export function FeedbackComponent() {
                     }
                     submit();
                   }}
-                  transition={popOverTransition}
+                  transition={{
+          type: 'spring',
+          duration: animationParams.popoverDuration,
+          bounce: animationParams.popoverBounce,
+        }}
                 >
                   <textarea
                     autoFocus
@@ -150,8 +226,8 @@ export function FeedbackComponent() {
                           key={formState}
                           transition={{
                             type: 'spring',
-                            duration: 0.3,
-                            bounce: 0,
+                            duration: animationParams.buttonTransitionDuration,
+                            bounce: animationParams.buttonTransitionBounce,
                           }}
                         >
                           {formState === 'loading' ? (
