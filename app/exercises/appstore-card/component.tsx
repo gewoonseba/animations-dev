@@ -1,10 +1,10 @@
 /** biome-ignore-all lint/performance/noImgElement: <just for the exercise> */
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import { useTweakpane, type AnimationParams } from '../../../components/use-tweakpane';
+import { useTweakpane, type AnimationParams } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 interface CardData {
@@ -28,7 +28,7 @@ interface ActiveCardProps {
   animationParams: AnimationParams;
 }
 
-function Card({ card, setActiveCard, animationParams }: CardProps) {
+function Card({ card, setActiveCard, animationParams }: CardProps): JSX.Element {
   return (
     <motion.div
       className={styles.card}
@@ -138,9 +138,9 @@ function Card({ card, setActiveCard, animationParams }: CardProps) {
   );
 }
 
-function ActiveCard({ activeCard, setActiveCard, animationParams }: ActiveCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref as React.RefObject<HTMLElement>, () =>
+function ActiveCard({ activeCard, setActiveCard, animationParams }: ActiveCardProps): JSX.Element {
+  const ref = useRef<HTMLElement>(null);
+  useOnClickOutside(ref, () =>
     setActiveCard(null)
   );
 
@@ -252,7 +252,7 @@ function ActiveCard({ activeCard, setActiveCard, animationParams }: ActiveCardPr
   );
 }
 
-export function AppstoreCardComponent() {
+export function AppstoreCardComponent(): JSX.Element {
   const [activeCard, setActiveCard] = useState<CardData | null>(null);
 
   // Tweakpane controls for card animations
@@ -280,10 +280,8 @@ export function AppstoreCardComponent() {
           label: 'layout animation',
           type: 'string',
           options: {
-            options: {
-              spring: 'spring',
-              tween: 'tween',
-            },
+            spring: 'spring',
+            tween: 'tween',
           },
         },
         {
@@ -314,6 +312,8 @@ export function AppstoreCardComponent() {
     }
   );
 
+  const prefersReducedMotion = useReducedMotion();
+
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
@@ -337,7 +337,7 @@ export function AppstoreCardComponent() {
             className={styles.overlay}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
-            transition={{ duration: animationParams.overlayDuration }}
+            transition={{ duration: prefersReducedMotion ? 0 : animationParams.overlayDuration }}
           />
         ) : null}
       </AnimatePresence>

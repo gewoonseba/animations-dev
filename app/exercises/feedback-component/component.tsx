@@ -1,16 +1,16 @@
 'use client';
 
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import { useTweakpane } from '../../../components/use-tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 import { Spinner } from './spinner';
 
 type FormState = 'idle' | 'loading' | 'success';
 
 
-export function FeedbackComponent() {
+export function FeedbackComponent(): JSX.Element {
   const [open, setOpen] = useState<boolean>(false);
   const [formState, setFormState] = useState<FormState>('idle');
   const [feedback, setFeedback] = useState<string>('');
@@ -80,16 +80,26 @@ export function FeedbackComponent() {
     }
   );
 
+  const prefersReducedMotion = useReducedMotion();
+
+  // Gate durations/bounce when reduced motion is requested
+  const popoverDuration = prefersReducedMotion ? 0 : animationParams.popoverDuration;
+  const popoverBounce = prefersReducedMotion ? 0 : animationParams.popoverBounce;
+  const buttonTransitionDuration = prefersReducedMotion ? 0 : animationParams.buttonTransitionDuration;
+  const buttonTransitionBounce = prefersReducedMotion ? 0 : animationParams.buttonTransitionBounce;
+  const loadingDurationMs = prefersReducedMotion ? 0 : animationParams.loadingDuration;
+  const successDelayMs = prefersReducedMotion ? 0 : animationParams.successDelay;
+
   const submit = useCallback(() => {
     setFormState('loading');
     setTimeout(() => {
       setFormState('success');
-    }, animationParams.loadingDuration);
+    }, loadingDurationMs);
 
     setTimeout(() => {
       setOpen(false);
-    }, animationParams.loadingDuration + animationParams.successDelay);
-  }, [animationParams.loadingDuration, animationParams.successDelay]);
+    }, loadingDurationMs + successDelayMs);
+  }, [loadingDurationMs, successDelayMs]);
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
@@ -124,8 +134,8 @@ export function FeedbackComponent() {
         style={{ borderRadius: 8 }}
         transition={{
           type: 'spring',
-          duration: animationParams.popoverDuration,
-          bounce: animationParams.popoverBounce,
+          duration: popoverDuration,
+          bounce: popoverBounce,
         }}
         type="button"
       >
@@ -140,8 +150,8 @@ export function FeedbackComponent() {
             style={{ borderRadius: 12 }}
             transition={{
           type: 'spring',
-          duration: animationParams.popoverDuration,
-          bounce: animationParams.popoverBounce,
+          duration: popoverDuration,
+          bounce: popoverBounce,
         }}
           >
             <motion.span
@@ -161,8 +171,8 @@ export function FeedbackComponent() {
                   key="success"
                   transition={{
           type: 'spring',
-          duration: animationParams.popoverDuration,
-          bounce: animationParams.popoverBounce,
+          duration: popoverDuration,
+          bounce: popoverBounce,
         }}
                 >
                   <svg
@@ -203,8 +213,8 @@ export function FeedbackComponent() {
                   }}
                   transition={{
           type: 'spring',
-          duration: animationParams.popoverDuration,
-          bounce: animationParams.popoverBounce,
+          duration: popoverDuration,
+          bounce: popoverBounce,
         }}
                 >
                   <textarea
@@ -225,8 +235,8 @@ export function FeedbackComponent() {
                           key={formState}
                           transition={{
                             type: 'spring',
-                            duration: animationParams.buttonTransitionDuration,
-                            bounce: animationParams.buttonTransitionBounce,
+                            duration: buttonTransitionDuration,
+                            bounce: buttonTransitionBounce,
                           }}
                         >
                           {formState === 'loading' ? (
@@ -251,7 +261,7 @@ export function FeedbackComponent() {
   );
 }
 
-export function Divider() {
+export function Divider(): JSX.Element {
   return (
     <>
       <svg

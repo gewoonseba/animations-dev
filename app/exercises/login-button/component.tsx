@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
-import { useTweakpane } from '../../../components/use-tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 const buttonCopy = {
@@ -113,7 +113,7 @@ interface SpinnerProps {
   size?: number;
 }
 
-const bars = new Array(12).fill(0);
+const bars = Array.from({ length: 12 }, () => 0);
 
 function Spinner({ color, size = 20 }: SpinnerProps) {
   return (

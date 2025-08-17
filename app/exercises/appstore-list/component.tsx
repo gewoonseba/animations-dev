@@ -4,7 +4,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
-import { useTweakpane } from '../../../components/use-tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 interface Game {
@@ -54,10 +54,8 @@ export function AppstoreListComponent() {
           label: 'layout animation',
           type: 'string',
           options: {
-            options: {
-              spring: 'spring',
-              tween: 'tween',
-            },
+            spring: 'spring',
+            tween: 'tween',
           },
         },
         {
@@ -117,7 +115,7 @@ export function AppstoreListComponent() {
               >
                 <div className={styles.header}>
                   <motion.img
-                    alt=""
+                    alt={`${activeGame.title} app icon`}
                     height={56}
                     layoutId={`img-${activeGame.title}`}
                     src={activeGame.image}
@@ -170,6 +168,13 @@ export function AppstoreListComponent() {
             onClick={() => setActiveGame(game)}
             style={{ borderRadius: 8 }}
             tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setActiveGame(game);
+              }
+            }}
             transition={{
               type: animationParams.layoutType,
               duration: animationParams.layoutDuration,
@@ -177,7 +182,7 @@ export function AppstoreListComponent() {
             }}
           >
             <motion.img
-              alt=""
+              alt={`${game.title} app icon`}
               height={56}
               layoutId={`img-${game.title}`}
               src={game.image}

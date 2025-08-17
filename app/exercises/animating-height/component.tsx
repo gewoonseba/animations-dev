@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import useMeasure from 'react-use-measure';
-import { useTweakpane } from '../../../components/use-tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 export function AnimatingHeightComponent() {
@@ -34,12 +34,10 @@ export function AnimatingHeightComponent() {
           label: 'height easing',
           type: 'string',
           options: {
-            options: {
-              easeInOut: 'easeInOut',
-              linear: 'linear',
-              easeIn: 'easeIn',
-              easeOut: 'easeOut',
-            },
+            easeInOut: 'easeInOut',
+            linear: 'linear',
+            easeIn: 'easeIn',
+            easeOut: 'easeOut',
           },
         },
         {

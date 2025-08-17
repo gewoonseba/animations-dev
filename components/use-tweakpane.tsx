@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Pane } from 'tweakpane';
 
 export interface TweakpaneControl {
@@ -10,8 +10,8 @@ export interface TweakpaneControl {
   max?: number;
   step?: number;
   type?: 'number' | 'boolean' | 'string';
-  options?: Record<string, any>;
-  format?: (value: any) => string;
+  options?: Record<string, unknown>;
+  format?: (value: unknown) => string;
 }
 
 export interface TweakpaneConfig {
@@ -20,7 +20,7 @@ export interface TweakpaneConfig {
 }
 
 export interface TweakpaneValues {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export type AnimationParams = TweakpaneValues;
@@ -31,7 +31,12 @@ export function useTweakpane<T extends TweakpaneValues>(
 ): T {
   const paneRef = useRef<Pane | null>(null);
   const paneContainerRef = useRef<HTMLDivElement | null>(null);
-  const valuesRef = useRef<T>(initialValues);
+  const [values, setValues] = useState<T>(initialValues);
+  const configRef = useRef(config);
+
+  useEffect(() => {
+    configRef.current = config;
+  }, [config]);
 
   useEffect(() => {
     // Create a fixed container for the pane
@@ -46,26 +51,29 @@ export function useTweakpane<T extends TweakpaneValues>(
 
     const pane = new Pane({ 
       container, 
-      title: config.title || 'Animation Controls' 
+      title: configRef.current.title || 'Animation Controls' 
     });
     paneRef.current = pane;
 
     // Create a local mirror object for Tweakpane bindings
-    const bindings: any = {};
+    const bindings: Record<string, unknown> = {};
     
     // Initialize bindings with current values
-    config.controls.forEach((control) => {
-      bindings[control.key] = valuesRef.current[control.key];
+    configRef.current.controls.forEach((control) => {
+      bindings[control.key] = values[control.key];
     });
 
     // Add controls to the pane
-    config.controls.forEach((control) => {
-      const controlConfig: any = {
+    configRef.current.controls.forEach((control) => {
+      const controlConfig: Record<string, unknown> = {
         label: control.label,
       };
 
       if (control.type === 'boolean') {
         controlConfig.type = 'boolean';
+      } else if (control.type === 'string') {
+        controlConfig.type = 'select';
+        controlConfig.options = control.options;
       } else if (control.type === 'number' || (control.min !== undefined || control.max !== undefined)) {
         if (control.min !== undefined) controlConfig.min = control.min;
         if (control.max !== undefined) controlConfig.max = control.max;
@@ -80,11 +88,11 @@ export function useTweakpane<T extends TweakpaneValues>(
 
       const binding = pane.addBinding(bindings, control.key, controlConfig);
       
-      binding.on('change', (ev: { value: any; last?: boolean }) => {
-        valuesRef.current = {
-          ...valuesRef.current,
-          [control.key]: ev.value,
-        };
+      binding.on('change', (ev: { value: unknown; last?: boolean }) => {
+        setValues((prev) => ({
+          ...prev,
+          [control.key]: ev.value as never,
+        }));
       });
     });
 
@@ -100,7 +108,7 @@ export function useTweakpane<T extends TweakpaneValues>(
         paneContainerRef.current = null;
       }
     };
-  }, [config]);
+  }, []);
 
-  return valuesRef.current;
+  return values;
 }

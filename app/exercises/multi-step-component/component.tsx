@@ -3,7 +3,7 @@
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
 import { useMemo, useRef, useState } from 'react';
 import useMeasure from 'react-use-measure';
-import { useTweakpane } from '../../../components/use-tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 type Direction = 'forward' | 'backward';
