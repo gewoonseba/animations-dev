@@ -32,7 +32,6 @@ export function AppstoreListComponent() {
     },
     {
       title: 'Appstore List Animation',
-      position: { top: '16px', left: '16px' },
       controls: [
         {
           key: 'overlayDuration',

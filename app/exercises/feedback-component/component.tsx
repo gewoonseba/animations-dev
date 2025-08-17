@@ -29,7 +29,6 @@ export function FeedbackComponent() {
     },
     {
       title: 'Feedback Animation',
-      position: { bottom: '16px', right: '16px' },
       controls: [
         {
           key: 'popoverDuration',

@@ -266,7 +266,6 @@ export function AppstoreCardComponent() {
     },
     {
       title: 'Appstore Card Animation',
-      position: { top: '16px', left: '50%' },
       controls: [
         {
           key: 'layoutDuration',

@@ -17,12 +17,6 @@ export interface TweakpaneControl {
 export interface TweakpaneConfig {
   title?: string;
   controls: TweakpaneControl[];
-  position?: {
-    top?: string;
-    right?: string;
-    bottom?: string;
-    left?: string;
-  };
 }
 
 export interface TweakpaneValues {
@@ -43,16 +37,8 @@ export function useTweakpane<T extends TweakpaneValues>(
     // Create a fixed container for the pane
     const container = document.createElement('div');
     container.style.position = 'fixed';
-    container.style.top = config.position?.top || '16px';
-    container.style.right = config.position?.right || '16px';
-    if (config.position?.bottom) {
-      container.style.bottom = config.position.bottom;
-      container.style.top = 'auto';
-    }
-    if (config.position?.left) {
-      container.style.left = config.position.left;
-      container.style.right = 'auto';
-    }
+    container.style.top = '16px';
+    container.style.right = '16px';
     container.style.zIndex = '9999';
     container.style.pointerEvents = 'auto';
     document.body.appendChild(container);
