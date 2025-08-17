@@ -4,6 +4,7 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 interface Game {
@@ -18,6 +19,63 @@ export function AppstoreListComponent() {
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref as React.RefObject<HTMLElement>, () =>
     setActiveGame(null)
+  );
+
+  // Tweakpane controls for layout animations
+  const animationParams = useTweakpane(
+    {
+      overlayDuration: 0.3,
+      layoutDuration: 0.6,
+      layoutType: 'spring',
+      layoutBounce: 0.1,
+      contentFadeDuration: 0.1,
+    },
+    {
+      title: 'Appstore List Animation',
+      controls: [
+        {
+          key: 'overlayDuration',
+          label: 'overlay duration (s)',
+          min: 0.1,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'layoutDuration',
+          label: 'layout duration (s)',
+          min: 0.2,
+          max: 2,
+          step: 0.1,
+          format: (v: number) => v.toFixed(1),
+        },
+        {
+          key: 'layoutType',
+          label: 'layout animation',
+          type: 'string',
+          options: {
+            spring: 'spring',
+            tween: 'tween',
+          },
+        },
+        {
+          key: 'layoutBounce',
+          label: 'layout bounce',
+          min: 0,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'contentFadeDuration',
+          label: 'content fade (s)',
+          min: 0.05,
+          max: 0.5,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+      ],
+    }
   );
 
   useEffect(() => {
@@ -41,6 +99,7 @@ export function AppstoreListComponent() {
               className={styles.overlay}
               exit={{ opacity: 0 }}
               initial={{ opacity: 0 }}
+              transition={{ duration: animationParams.overlayDuration }}
             />
             <div className={styles.activeGame}>
               <motion.div
@@ -48,10 +107,15 @@ export function AppstoreListComponent() {
                 layoutId={`wrapper-${activeGame.title}`}
                 ref={ref}
                 style={{ borderRadius: 12 }}
+                transition={{
+                  type: animationParams.layoutType,
+                  duration: animationParams.layoutDuration,
+                  bounce: animationParams.layoutBounce,
+                }}
               >
                 <div className={styles.header}>
                   <motion.img
-                    alt=""
+                    alt={`${activeGame.title} app icon`}
                     height={56}
                     layoutId={`img-${activeGame.title}`}
                     src={activeGame.image}
@@ -87,7 +151,7 @@ export function AppstoreListComponent() {
                   className={styles.longDescription}
                   exit={{ opacity: 0 }}
                   initial={{ opacity: 0 }}
-                  transition={{ duration: 0.1 }}
+                  transition={{ duration: animationParams.contentFadeDuration }}
                 >
                   {activeGame.longDescription}
                 </motion.p>
@@ -104,9 +168,21 @@ export function AppstoreListComponent() {
             onClick={() => setActiveGame(game)}
             style={{ borderRadius: 8 }}
             tabIndex={0}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setActiveGame(game);
+              }
+            }}
+            transition={{
+              type: animationParams.layoutType,
+              duration: animationParams.layoutDuration,
+              bounce: animationParams.layoutBounce,
+            }}
           >
             <motion.img
-              alt=""
+              alt={`${game.title} app icon`}
               height={56}
               layoutId={`img-${game.title}`}
               src={game.image}

@@ -1,9 +1,10 @@
 /** biome-ignore-all lint/performance/noImgElement: <just for the exercise> */
 'use client';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useOnClickOutside } from 'usehooks-ts';
+import { useTweakpane, type AnimationParams } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 interface CardData {
@@ -18,21 +19,23 @@ interface CardData {
 interface CardProps {
   card: CardData;
   setActiveCard: (card: CardData | null) => void;
+  animationParams: AnimationParams;
 }
 
 interface ActiveCardProps {
   activeCard: CardData;
   setActiveCard: (card: CardData | null) => void;
+  animationParams: AnimationParams;
 }
 
-function Card({ card, setActiveCard }: CardProps) {
+function Card({ card, setActiveCard, animationParams }: CardProps): JSX.Element {
   return (
     <motion.div
       className={styles.card}
       layoutId={`card-${card.title}`}
       onClick={() => setActiveCard(card)}
       style={{ borderRadius: 20 }}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ scale: animationParams.tapScale }}
     >
       <motion.img
         alt=""
@@ -135,9 +138,9 @@ function Card({ card, setActiveCard }: CardProps) {
   );
 }
 
-function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  useOnClickOutside(ref as React.RefObject<HTMLElement>, () =>
+function ActiveCard({ activeCard, setActiveCard, animationParams }: ActiveCardProps): JSX.Element {
+  const ref = useRef<HTMLElement>(null);
+  useOnClickOutside(ref, () =>
     setActiveCard(null)
   );
 
@@ -249,8 +252,67 @@ function ActiveCard({ activeCard, setActiveCard }: ActiveCardProps) {
   );
 }
 
-export function AppstoreCardComponent() {
+export function AppstoreCardComponent(): JSX.Element {
   const [activeCard, setActiveCard] = useState<CardData | null>(null);
+
+  // Tweakpane controls for card animations
+  const animationParams = useTweakpane(
+    {
+      layoutDuration: 0.6,
+      layoutType: 'spring',
+      layoutBounce: 0.1,
+      overlayDuration: 0.3,
+      tapScale: 0.98,
+    },
+    {
+      title: 'Appstore Card Animation',
+      controls: [
+        {
+          key: 'layoutDuration',
+          label: 'layout duration (s)',
+          min: 0.2,
+          max: 2,
+          step: 0.1,
+          format: (v: number) => v.toFixed(1),
+        },
+        {
+          key: 'layoutType',
+          label: 'layout animation',
+          type: 'string',
+          options: {
+            spring: 'spring',
+            tween: 'tween',
+          },
+        },
+        {
+          key: 'layoutBounce',
+          label: 'layout bounce',
+          min: 0,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'overlayDuration',
+          label: 'overlay duration (s)',
+          min: 0.1,
+          max: 1,
+          step: 0.05,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'tapScale',
+          label: 'tap scale',
+          min: 0.9,
+          max: 1,
+          step: 0.01,
+          format: (v: number) => v.toFixed(2),
+        },
+      ],
+    }
+  );
+
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     function onKeyDown(event: KeyboardEvent) {
@@ -266,7 +328,7 @@ export function AppstoreCardComponent() {
   return (
     <div className={styles.cardsWrapper}>
       {CARDS.map((card) => (
-        <Card card={card} key={card.title} setActiveCard={setActiveCard} />
+        <Card card={card} key={card.title} setActiveCard={setActiveCard} animationParams={animationParams} />
       ))}
       <AnimatePresence>
         {activeCard ? (
@@ -275,12 +337,13 @@ export function AppstoreCardComponent() {
             className={styles.overlay}
             exit={{ opacity: 0 }}
             initial={{ opacity: 0 }}
+            transition={{ duration: prefersReducedMotion ? 0 : animationParams.overlayDuration }}
           />
         ) : null}
       </AnimatePresence>
       <AnimatePresence>
         {activeCard ? (
-          <ActiveCard activeCard={activeCard} setActiveCard={setActiveCard} />
+          <ActiveCard activeCard={activeCard} setActiveCard={setActiveCard} animationParams={animationParams} />
         ) : null}
       </AnimatePresence>
     </div>

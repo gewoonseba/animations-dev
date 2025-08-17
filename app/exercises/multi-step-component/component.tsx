@@ -1,9 +1,9 @@
 'use client';
 
 import { AnimatePresence, MotionConfig, motion } from 'motion/react';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import useMeasure from 'react-use-measure';
-import { Pane } from 'tweakpane';
+import { useTweakpane } from '@/components/use-tweakpane';
 import styles from './component.module.css';
 
 type Direction = 'forward' | 'backward';
@@ -13,98 +13,53 @@ export function MultiStepComponent() {
   const [ref, bounds] = useMeasure();
   const directionRef = useRef<Direction>('forward');
 
-  // Parameters controlled via Tweakpane. Stored in refs to avoid re-renders.
-  const paneRef = useRef<Pane | null>(null);
-  const paneContainerRef = useRef<HTMLDivElement | null>(null);
-  const paramsRef = useRef<{
-    duration: number;
-    bounce: number;
-    animateOpacity: boolean;
-  }>({
-    duration: 0.7,
-    bounce: 0,
-    animateOpacity: true,
-  });
-
-  useEffect(() => {
-    // Create a fixed container in the top-right corner of the page so the pane is always visible
-    const container = document.createElement('div');
-    container.style.position = 'fixed';
-    container.style.top = '16px';
-    container.style.right = '16px';
-    container.style.zIndex = '9999';
-    container.style.pointerEvents = 'auto';
-    document.body.appendChild(container);
-    paneContainerRef.current = container;
-
-    const pane = new Pane({ container, title: 'Animation Controls' });
-    paneRef.current = pane;
-
-    // Local mirror object for Tweakpane bindings
-    const bindings = {
-      duration: paramsRef.current.duration,
-      bounce: paramsRef.current.bounce,
-      animateOpacity: paramsRef.current.animateOpacity,
-    };
-
-    const durationBinding = pane.addBinding(bindings, 'duration', {
-      label: 'duration (s)',
-      min: 0,
-      max: 3,
-      step: 0.01,
-      format: (v: number) => v.toFixed(2),
-    });
-    durationBinding.on('change', (ev: { value: number; last?: boolean }) => {
-      paramsRef.current.duration = Number(ev.value);
-    });
-
-    const bounceBinding = pane.addBinding(bindings, 'bounce', {
-      label: 'bounce',
-      min: 0,
-      max: 1,
-      step: 0.01,
-      format: (v: number) => v.toFixed(2),
-    });
-    bounceBinding.on('change', (ev: { value: number; last?: boolean }) => {
-      paramsRef.current.bounce = Number(ev.value);
-    });
-
-    const animateOpacityBinding = pane.addBinding(bindings, 'animateOpacity', {
-      label: 'animate opacity',
-      type: 'boolean',
-    });
-    animateOpacityBinding.on(
-      'change',
-      (ev: { value: boolean; last?: boolean }) => {
-        paramsRef.current.animateOpacity = Boolean(ev.value);
-      }
-    );
-
-    return () => {
-      try {
-        paneRef.current?.dispose();
-      } finally {
-        paneRef.current = null;
-        paneContainerRef.current?.parentNode?.removeChild(
-          paneContainerRef.current
-        );
-        paneContainerRef.current = null;
-      }
-    };
-  }, []);
+  // Use the reusable tweakpane hook
+  const animationParams = useTweakpane(
+    {
+      duration: 0.7,
+      bounce: 0,
+      animateOpacity: true,
+    },
+    {
+      title: 'Multi-Step Animation',
+      controls: [
+        {
+          key: 'duration',
+          label: 'duration (s)',
+          min: 0,
+          max: 3,
+          step: 0.01,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'bounce',
+          label: 'bounce',
+          min: 0,
+          max: 1,
+          step: 0.01,
+          format: (v: number) => v.toFixed(2),
+        },
+        {
+          key: 'animateOpacity',
+          label: 'animate opacity',
+          type: 'boolean',
+        },
+      ],
+    }
+  );
 
   const variants = {
     target: {
       x: 0,
-      opacity: paramsRef.current.animateOpacity ? 1 : undefined,
+      opacity: animationParams.animateOpacity ? 1 : undefined,
     },
     exit: (direction: Direction) => ({
       x: direction === 'forward' ? '-110%' : '110%',
-      opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+      opacity: animationParams.animateOpacity ? 0 : undefined,
     }),
     initial: (direction: Direction) => ({
       x: direction === 'forward' ? '110%' : '-110%',
-      opacity: paramsRef.current.animateOpacity ? 0 : undefined,
+      opacity: animationParams.animateOpacity ? 0 : undefined,
     }),
   };
 
@@ -166,9 +121,9 @@ export function MultiStepComponent() {
   return (
     <MotionConfig
       transition={{
-        duration: paramsRef.current.duration,
+        duration: animationParams.duration,
         type: 'spring',
-        bounce: paramsRef.current.bounce,
+        bounce: animationParams.bounce,
       }}
     >
       <motion.div
